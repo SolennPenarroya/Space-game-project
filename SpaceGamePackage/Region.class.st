@@ -8,6 +8,11 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'initialization' }
+Region >> initialize [ 
+ super initialize.
+]
+
 { #category : 'accessing' }
 Region >> name [
 
