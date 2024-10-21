@@ -4,3 +4,10 @@ Class {
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
+
+{ #category : 'initialization' }
+Nebula >> initialize [
+
+	super initialize.
+	name := 'Nebula'
+]

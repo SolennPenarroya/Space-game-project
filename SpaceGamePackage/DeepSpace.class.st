@@ -4,3 +4,10 @@ Class {
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
+
+{ #category : 'initialization' }
+DeepSpace >> initialize [
+
+	super initialize.
+	name := 'Deep Space'
+]
