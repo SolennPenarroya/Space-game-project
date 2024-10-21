@@ -11,19 +11,30 @@ Cruiser >> attack: aShip [
 ]
 
 { #category : 'as yet unclassified' }
-Cruiser >> beAttackedByBattleCruiser: aBattleCruiser [
+Cruiser >> attackBattleCruiser: aBattleCruiser in: aRegion [
 ]
 
 { #category : 'as yet unclassified' }
-Cruiser >> beAttackedByCruiser: aCruiser [
+Cruiser >> attackCruiser: aCruiser in: aRegion [
+
+	
 ]
 
 { #category : 'as yet unclassified' }
-Cruiser >> beAttackedByDestroyer: aDestroyer [
+Cruiser >> attackDestroyer: aDestroyer in: aRegion [
+
+	
 ]
 
 { #category : 'as yet unclassified' }
-Cruiser >> beAttackedByFighter: aFighter [
+Cruiser >> attackFighter: aFighter in: aRegion [
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+Cruiser >> attackedBy: anAttackingFleet in: aRegion [
+    ^ anAttackingFleet attackCruiser: self in: aRegion.
 ]
 
 { #category : 'initialization' }

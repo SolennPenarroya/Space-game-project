@@ -13,15 +13,8 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Ship >> attack: aShip [
-
-	aShip beAttackedBy: self
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> attack: anAnotherShip inRegion: aRegion [
-
-	^ anAnotherShip receiveAttackFrom: self inRegion: aRegion.
+Ship >> attack: anotherFleet in: aRegion [
+    ^ anotherFleet attackedBy: self in: aRegion.
 ]
 
 { #category : 'initialization' }
@@ -47,9 +40,4 @@ Ship >> initializeRegionModifier [
 	regionModifier at: 'damageModifier' put: Dictionary new.
 
 	^ regionModifier
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> receiveAttackFrom: anAttacker inRegion: aRegion [
-    ^ 'Attack not defined for this combination'.
 ]
