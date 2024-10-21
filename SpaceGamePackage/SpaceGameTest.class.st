@@ -22,6 +22,14 @@ SpaceGameTest >> testDeepSpaceHasDeepSpaceName [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> testInhabitedSolarSystemHasInhabitedSolarSystemName [
+
+	| i |
+	i := InhabitedSolarSystem new.
+	self assert: i name equals: 'Inhabited Solar System'
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testNebulaHasNebulaName [
 
 	| n |
