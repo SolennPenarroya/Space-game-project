@@ -36,7 +36,7 @@ Fighter >> initialize [
 	damage := 50.
 ]
 
-{ #category : 'initialization' }
+{ #category : 'as yet unclassified' }
 Fighter >> initializeRegionModifier [
 
 	| shieldModifier hullModifier damageModifier precisionModifier |

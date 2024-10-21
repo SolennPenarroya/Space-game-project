@@ -19,27 +19,9 @@ Ship >> attack: aShip [
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> beAttackedByBattleCruiser: aBattleCruiser [
+Ship >> attack: anAnotherShip inRegion: aRegion [
 
-	self error: 'Method not implemented'
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> beAttackedByCruiser: aCruiser [
-
-	self error: 'Method not implemented'
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> beAttackedByDestroyer: aDestroyer [
-
-	self error: 'Method not implemented'
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> beAttackedByFighter: aFighter [
-
-	self error: 'Method not implemented'
+	^ anAnotherShip receiveAttackFrom: self inRegion: aRegion.
 ]
 
 { #category : 'initialization' }
@@ -65,4 +47,9 @@ Ship >> initializeRegionModifier [
 	regionModifier at: 'damageModifier' put: Dictionary new.
 
 	^ regionModifier
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> receiveAttackFrom: anAttacker inRegion: aRegion [
+    ^ 'Attack not defined for this combination'.
 ]
