@@ -12,6 +12,36 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'as yet unclassified' }
+Ship >> attack: aShip [
+
+	aShip beAttackedBy: self
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> beAttackedByBattleCruiser: aBattleCruiser [
+
+	self error: 'Method not implemented'
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> beAttackedByCruiser: aCruiser [
+
+	self error: 'Method not implemented'
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> beAttackedByDestroyer: aDestroyer [
+
+	self error: 'Method not implemented'
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> beAttackedByFighter: aFighter [
+
+	self error: 'Method not implemented'
+]
+
 { #category : 'initialization' }
 Ship >> initialize [
 	super initialize.

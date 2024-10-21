@@ -5,6 +5,29 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'as yet unclassified' }
+Destroyer >> attack: aShip [
+    aShip beAttackedByDestroyer: self.
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> beAttackedByBattleCruiser: aBattleCruiser [
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> beAttackedByCruiser: aCruiser [
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> beAttackedByDestroyer: aDestroyer [
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> beAttackedByFighter: aFighter [
+]
+
 { #category : 'initialization' }
 Destroyer >> initialize [
 
