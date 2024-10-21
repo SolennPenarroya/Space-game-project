@@ -28,8 +28,7 @@ SpaceGameTest >> testFleetInitializeWith5Fighter [
 	fighter := Fighter new.
 	fleet := Fleet new initializeWith: fighter numberOfShips: 5.
 
-	self assert: fleet ships size equals: 5.
-	
+	self assert: fleet ships size equals: 5
 ]
 
 { #category : 'tests' }
