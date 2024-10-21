@@ -1,13 +1,13 @@
 Class {
-	#name : 'Nebula',
+	#name : 'InhabitedSolarSystem',
 	#superclass : 'Region',
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
 
 { #category : 'initialization' }
-Nebula >> initialize [
+InhabitedSolarSystem >> initialize [
 
 	super initialize.
-	name := 'Nebula'
+	name := 'Inhabited Solar System'
 ]
