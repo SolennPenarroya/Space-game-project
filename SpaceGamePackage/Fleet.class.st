@@ -9,15 +9,13 @@ Class {
 }
 
 { #category : 'initialization' }
-Fleet >> initializeWith: aShip numberOfShips: shipCount [ [
-    super initialize.
-    ships := OrderedCollection new.
-    
-    shipCount timesRepeat: [
-        ships add: aShip copy.
-    ].
-]
+Fleet >> initializeWith: aShip numberOfShips: shipCount [
 
+	
+	super initialize.
+	ships := OrderedCollection new.
+
+	shipCount timesRepeat: [ ships add: aShip copy ] 
 ]
 
 { #category : 'accessing' }
