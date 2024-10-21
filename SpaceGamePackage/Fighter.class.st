@@ -6,11 +6,6 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Fighter >> attack: aShip [
-    aShip beAttackedByFighter: self.
-]
-
-{ #category : 'as yet unclassified' }
 Fighter >> attackBattleCruiser: aBattleCruiser in: aRegion [
 ]
 
@@ -35,7 +30,7 @@ Fighter >> attackFighter: aFighter in: aRegion [
 { #category : 'as yet unclassified' }
 Fighter >> attackedBy: anAttackingFleet in: aRegion [
 
-	^ anAttackingFleet attackFighter: self in: region.
+	^ anAttackingFleet attackFighter: self in: aRegion 
 ]
 
 { #category : 'initialization' }

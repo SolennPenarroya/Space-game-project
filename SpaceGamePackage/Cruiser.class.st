@@ -6,11 +6,6 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Cruiser >> attack: aShip [
-    aShip beAttackedByCruiser: self.
-]
-
-{ #category : 'as yet unclassified' }
 Cruiser >> attackBattleCruiser: aBattleCruiser in: aRegion [
 ]
 
