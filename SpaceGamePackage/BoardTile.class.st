@@ -46,6 +46,11 @@ BoardTile >> position: aPoint [
 	self board atX: aPoint x atY: aPoint y put: self
 ]
 
+{ #category : 'accessing' }
+BoardTile >> region [
+^region 
+]
+
 { #category : 'initialization' }
 BoardTile >> setBoard: aBoard [
 

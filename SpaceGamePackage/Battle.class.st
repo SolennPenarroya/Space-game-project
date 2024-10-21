@@ -17,19 +17,18 @@ Battle >> fleetA [
 	^ fleetA
 ]
 
-{ #category : 'as yet unclassified' }
-Battle >> fleetA:afleet fleetB: bfleet regionA: aregion regionB: bRegion [
-
-	fleetA := afleet.
-	fleetB := bfleet.
-	regionA := aregion.
-	regionB := bRegion
-]
-
 { #category : 'accessing' }
 Battle >> fleetB [
 
 	^ fleetB
+]
+
+{ #category : 'initialization' }
+Battle >> initializeWith: fleetOne in: regionOne versus: fleetTwo in: regionTwo [
+    fleetA := fleetOne.
+    regionA := regionOne.
+    fleetB := fleetTwo.
+    regionB := regionTwo.
 ]
 
 { #category : 'accessing' }
