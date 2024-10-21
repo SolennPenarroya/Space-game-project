@@ -3,6 +3,7 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'name',
+		'parentFleet',
 		'shield',
 		'hull',
 		'damage',
@@ -13,8 +14,9 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Ship >> attack: anotherFleet in: aRegion [
-    ^ anotherFleet attackedBy: self in: aRegion.
+Ship >> attack: anEnnemiFleet in: aRegion [
+
+	self subclassResponsibility 
 ]
 
 { #category : 'initialization' }
@@ -40,4 +42,15 @@ Ship >> initializeRegionModifier [
 	regionModifier at: 'damageModifier' put: Dictionary new.
 
 	^ regionModifier
+]
+
+{ #category : 'accessing' }
+Ship >> parentFleet: aFleet [
+
+	parentFleet := aFleet
+]
+
+{ #category : 'accessing' }
+Ship >> region [
+	^ parentFleet region
 ]

@@ -9,14 +9,29 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
-{ #category : 'initialization' }
-Fleet >> initializeWith: aShip numberOfShips: shipCount [
+{ #category : 'adding' }
+Fleet >> addShip: aShip [
 
-	
+	aShip parentFleet: self.
+	ships add: aShip
+]
+
+{ #category : 'initialization' }
+Fleet >> initializeWith: aShip in: aRegion [
+
 	super initialize.
 	ships := OrderedCollection new.
+	region := aRegion.
+	self addShip: aShip
+]
 
-	shipCount timesRepeat: [ ships add: aShip copy ] 
+{ #category : 'initialization' }
+Fleet >> initializeWith: aShip numberOfShips: shipCount in: aRegion [
+
+	super initialize.
+	ships := OrderedCollection new.
+	region := aRegion.
+	shipCount timesRepeat: [ self addShip: aShip copy ]
 ]
 
 { #category : 'accessing' }
