@@ -48,11 +48,23 @@ SpaceGameTest >> testFighterVsFighterInInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> testFleetInitializeWith1Fighter [
+
+	| fleet fighter region|
+	fighter := Fighter new.
+	region := InhabitedSolarSystem new.
+	fleet := Fleet new initializeWith: fighter in: region .
+
+	self assert: fleet ships size equals: 1
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testFleetInitializeWith5Fighter [
 
-	| fleet fighter |
+	| fleet fighter region |
 	fighter := Fighter new.
-	fleet := Fleet new initializeWith: fighter numberOfShips: 5.
+	region := InhabitedSolarSystem new.
+	fleet := Fleet new initializeWith: fighter numberOfShips: 5 in: region.
 
 	self assert: fleet ships size equals: 5
 ]

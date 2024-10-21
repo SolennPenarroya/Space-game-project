@@ -6,6 +6,12 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
+BattleCruiser >> attack: anEnnemiFleet in: aRegion [
+
+	anEnnemiFleet defendAgainstBattleCruiser: self region
+]
+
+{ #category : 'as yet unclassified' }
 BattleCruiser >> attackBattleCruiser: aBattleCruiser in: aRegion [
 ]
 
