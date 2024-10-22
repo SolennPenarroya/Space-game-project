@@ -107,3 +107,23 @@ SpaceGameTest >> testNebulaHasNebulaName [
 	n := Nebula new.
 	self assert: n name equals: 'Nebula'
 ]
+
+{ #category : 'tests' }
+SpaceGameTest >> testTakingDamage [
+
+    | bc bc2|
+    bc := BattleCruiser new.
+    bc takingDamages: 100.
+    self assert: bc shield equals: 1100. 
+    self assert: bc hull equals: 6000. 
+    bc takingDamages: 1500.
+    self assert: bc shield equals: 0. 
+    self assert: bc hull equals: 5600. 
+    bc takingDamages: 10000.
+    self assert: bc shield equals: 0. 
+    self assert: bc hull equals: 0. 
+    bc2 := BattleCruiser new.
+    bc2 takingDamages: 10000.
+    self assert: bc2 shield equals: 0. 
+    self assert: bc2 hull equals: 0. 
+]
