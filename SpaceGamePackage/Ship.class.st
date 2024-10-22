@@ -20,28 +20,33 @@ Ship >> attack: anEnnemiFleet in: aRegion [
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackBattleCruiser: aShip in: aRegion [
+Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
 
-	aShip shield > 0
-		ifTrue: [ aShip shield - aShip damage * (aShip regionModifier at: 'damageModifier' at: aRegion) * (regionModifier at: 'defenseModifier' at: aRegion) ]
-		ifFalse: [ aShip hull - aShip damage * (aShip regionModifier at: 'damageModifier' at: aRegion) * (regionModifier at: 'defenseModifier' at: aRegion) ]
-		
+	aBattleCuiser shield > 0
+		ifTrue: [
+			self shield - aBattleCuiser damage
+			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
+			* (regionModifier at: 'defenseModifier' at: aRegion) ]
+		ifFalse: [
+			aBattleCuiser hull - aBattleCuiser damage
+			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
+			* (regionModifier at: 'defenseModifier' at: aRegion) ]
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackCruiser: aShip in: aRegion [
+Ship >> attackByCruiser: aShip in: aRegion [
 
 	
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackDestroyer: aShip in: aRegion [
+Ship >> attackByDestroyer: aShip in: aRegion [
 
 	
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackFighter: aShip in: aRegion [
+Ship >> attackByFighter: aShip in: aRegion [
 
 	
 ]

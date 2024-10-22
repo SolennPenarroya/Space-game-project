@@ -6,21 +6,16 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-BattleCruiser >> attack: anEnnemiFleet in: aRegion [
-
-	anEnnemiFleet defendAgainstBattleCruiser: self region
-]
-
-{ #category : 'as yet unclassified' }
-BattleCruiser >> attackDestroyer: aDestroyer in: aRegion [
-"x2 on shield and /2 on hull"
+BattleCruiser >> attackByDestroyer: aDestroyer in: aRegion [
+	"x2 on shield and /2 on hull"
 
 	
 ]
 
 { #category : 'as yet unclassified' }
-BattleCruiser >> attackFighter: aFighter in: aRegion [
-"Si du shield = 0 sinon dmg"
+BattleCruiser >> attackByFighter: aFighter in: aRegion [
+	"Si du shield = 0 sinon dmg"
+
 	
 ]
 

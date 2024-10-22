@@ -6,8 +6,8 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Destroyer >> attackDestroyer: aDestroyer in: aRegion [
-"x2 on shield and /2 on hull"
+Destroyer >> attackByDestroyer: aDestroyer in: aRegion [
+	"x2 on shield and /2 on hull"
 
 	
 ]
