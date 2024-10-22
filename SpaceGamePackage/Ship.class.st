@@ -14,8 +14,14 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
+Ship >> OtherShipTakingDamage: anInteger [
 
+	^ 'an other ship is atk by dmg'
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
+"
 	aBattleCuiser shield > 0
 		ifTrue: [
 			self shield - aBattleCuiser damage
@@ -25,6 +31,13 @@ Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
 			aBattleCuiser hull - aBattleCuiser damage
 			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
 			* (regionModifier at: 'defenseModifier' at: aRegion) ]
+		"
+		|dmg|
+		dmg=aBattleCuiser damage
+			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
+			* (regionModifier at: 'defenseModifier' at: aRegion) .
+			self takingDamages: dmg.
+		
 ]
 
 { #category : 'as yet unclassified' }
@@ -100,4 +113,21 @@ Ship >> regionModifier [
 { #category : 'accessing' }
 Ship >> shield [
 ^shield
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> takingDamages: dmgTaken [
+
+	| remaining |
+	remaining := shield - dmgTaken .
+	remaining > 0
+		ifTrue: [ shield := remaining ]
+		ifFalse:[
+			shield :=0.
+			remaining := hull + remaining.
+			remaining > 0
+				ifTrue: [ hull := remaining ]
+				ifFalse: [
+					hull := 0.
+					self OtherShipTakingDamage: remaining ] ]
 ]
