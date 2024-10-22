@@ -10,14 +10,6 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Fleet >> OtherShipTakingDamages: anInteger [
-
-	ships isEmpty
-		ifTrue: [ 'Fleet is out of boats' ]
-		ifFalse: [ ships atRandom takingDamages: anInteger ]
-]
-
-{ #category : 'as yet unclassified' }
 Fleet >> OtherShipTakingDamages: anInteger Ship: previousShip [
 	self removeShip: previousShip.
 	ships isEmpty
