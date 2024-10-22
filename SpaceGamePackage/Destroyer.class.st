@@ -6,23 +6,8 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Destroyer >> attackBattleCruiser: aBattleCruiser in: aRegion [
-]
-
-{ #category : 'as yet unclassified' }
-Destroyer >> attackCruiser: aCruiser in: aRegion [
-
-	
-]
-
-{ #category : 'as yet unclassified' }
 Destroyer >> attackDestroyer: aDestroyer in: aRegion [
-
-	
-]
-
-{ #category : 'as yet unclassified' }
-Destroyer >> attackFighter: aFighter in: aRegion [
+"x2 on shield and /2 on hull"
 
 	
 ]
@@ -46,7 +31,7 @@ Destroyer >> initialize [
 { #category : 'initialization' }
 Destroyer >> initializeRegionModifier [
 
-	| shieldModifier hullModifier damageModifier precisionModifier |
+	| shieldModifier hullModifier damageModifier precisionModifier defenseModifier |
 	super initializeRegionModifier.
 	shieldModifier := regionModifier at: 'shieldModifier'.
 	shieldModifier at: 'DeepSpace' put: 0.5.
@@ -72,7 +57,14 @@ Destroyer >> initializeRegionModifier [
 	damageModifier := regionModifier at: 'damageModifier'.
 	damageModifier at: 'DeepSpace' put: 1.
 	damageModifier at: 'Nebula' put: 1.
-	damageModifier at: 'AsteroidField' put: 1.
+	damageModifier at: 'AsteroidField' put: 0.
 	damageModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'damageModifier' put: damageModifier
+	regionModifier at: 'damageModifier' put: damageModifier.
+
+	defenseModifier := regionModifier at: 'defenseModifier'.
+	defenseModifier at: 'DeepSpace' put: 1.
+	defenseModifier at: 'Nebula' put: 1.
+	defenseModifier at: 'AsteroidField' put: 1.
+	defenseModifier at: 'InhabitedSolarSystem' put: 1.
+	regionModifier at: 'defenseModifier' put: defenseModifier
 ]
