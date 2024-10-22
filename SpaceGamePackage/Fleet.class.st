@@ -11,8 +11,9 @@ Class {
 
 { #category : 'as yet unclassified' }
 Fleet >> OtherShipTakingDamages: anInteger Ship: previousShip [
+
 	self removeShip: previousShip.
-	ships isEmpty
+	self isDestroyed 
 		ifTrue: [ 'Fleet is out of boats' ]
 		ifFalse: [ ships atRandom takingDamages: anInteger ]
 ]
@@ -40,6 +41,13 @@ Fleet >> initializeWith: aShip numberOfShips: shipCount in: aRegion [
 	ships := OrderedCollection new.
 	region := aRegion.
 	shipCount timesRepeat: [ self addShip: aShip copy ]
+]
+
+{ #category : 'testing' }
+Fleet >> isDestroyed [
+ships isEmpty
+		ifTrue: [ true ]
+		ifFalse: [ false ]
 ]
 
 { #category : 'accessing' }
