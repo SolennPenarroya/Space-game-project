@@ -14,12 +14,6 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Ship >> attack: anEnnemiFleet in: aRegion [
-
-	self subclassResponsibility 
-]
-
-{ #category : 'as yet unclassified' }
 Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
 
 	aBattleCuiser shield > 0
@@ -49,6 +43,12 @@ Ship >> attackByDestroyer: aShip in: aRegion [
 Ship >> attackByFighter: aShip in: aRegion [
 
 	
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> attackedBy: anEnnemiFleet in: aRegion [
+
+	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
