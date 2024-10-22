@@ -9,5 +9,6 @@ Class {
 InhabitedSolarSystem >> initialize [
 
 	super initialize.
-	name := 'Inhabited Solar System'
+	name := 'Inhabited Solar System'.
+	id := 'InhabitedSolarSystem'
 ]

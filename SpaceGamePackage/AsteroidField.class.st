@@ -9,5 +9,6 @@ Class {
 AsteroidField >> initialize [
 
 	super initialize.
-	name := 'Asteroid Field'
+	name := 'Asteroid Field'.
+	id := 'Asteroid Field'
 ]

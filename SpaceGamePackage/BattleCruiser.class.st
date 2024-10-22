@@ -14,7 +14,21 @@ BattleCruiser >> attackByDestroyer: aDestroyer in: aRegion [
 
 { #category : 'as yet unclassified' }
 BattleCruiser >> attackByFighter: aFighter in: aRegion [
-	"Si du shield = 0 sinon dmg"
+	"Si possède du shield = 0 sinon dmg"
+	| dmg |
+	dmg := 0.
+	self shield > 0
+	ifTrue: [  ]
+	ifFalse: [
+			dmg := aFighter damage
+	       *
+	       (aFighter regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (aFighter regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).].
+	self takingDamages: dmg
+	
 
 	
 ]
@@ -33,6 +47,7 @@ BattleCruiser >> initialize [
 	shield := 1200.
 	hull := 6000.
 	damage := 1000.
+	regionModifier := self initializeRegionModifier.
 ]
 
 { #category : 'initialization' }
@@ -73,5 +88,6 @@ BattleCruiser >> initializeRegionModifier [
 	defenseModifier at: 'Nebula' put: 1.
 	defenseModifier at: 'AsteroidField' put: 0.1.
 	defenseModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'defenseModifier' put: defenseModifier
+	regionModifier at: 'defenseModifier' put: defenseModifier.
+	^ regionModifier
 ]

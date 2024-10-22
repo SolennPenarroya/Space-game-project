@@ -2,11 +2,24 @@ Class {
 	#name : 'Region',
 	#superclass : 'Object',
 	#instVars : [
-		'name'
+		'name',
+		'id'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
+
+{ #category : 'accessing' }
+Region >> id [
+
+	^ id
+]
+
+{ #category : 'accessing' }
+Region >> id: aString [
+
+	id := aString
+]
 
 { #category : 'initialization' }
 Region >> initialize [ 
@@ -20,7 +33,7 @@ Region >> name [
 ]
 
 { #category : 'accessing' }
-Region >> name: anObject [
+Region >> name: aString [
 
-	name := anObject
+	name := aString
 ]

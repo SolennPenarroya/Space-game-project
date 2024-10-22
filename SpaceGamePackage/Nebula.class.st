@@ -9,5 +9,6 @@ Class {
 Nebula >> initialize [
 
 	super initialize.
-	name := 'Nebula'
+	name := 'Nebula'.
+	id := 'Nebula'
 ]

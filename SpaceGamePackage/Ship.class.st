@@ -15,40 +15,59 @@ Class {
 
 { #category : 'as yet unclassified' }
 Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
-"
-	aBattleCuiser shield > 0
-		ifTrue: [
-			self shield - aBattleCuiser damage
-			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
-			* (regionModifier at: 'defenseModifier' at: aRegion) ]
-		ifFalse: [
-			aBattleCuiser hull - aBattleCuiser damage
-			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
-			* (regionModifier at: 'defenseModifier' at: aRegion) ]
-		"
-		|dmg|
-		dmg=aBattleCuiser damage
-			* (aBattleCuiser regionModifier at: 'damageModifier' at: aRegion)
-			* (regionModifier at: 'defenseModifier' at: aRegion) .
-			self takingDamages: dmg.
-		
+
+	| dmg |
+	dmg := aBattleCuiser damage
+	       *
+	       (aBattleCuiser regionModifier
+		        at: 'damageModifier'
+		        at: aRegion id) * (aBattleCuiser regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).
+	self takingDamages: dmg
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackByCruiser: aShip in: aRegion [
-
+Ship >> attackByCruiser: aCruiser in: aRegion [
+| dmg |
+	dmg := aCruiser damage
+	       *
+	       (aCruiser regionModifier
+		        at: 'damageModifier'
+		        at: aRegion id)
+	       *
+	       (aCruiser regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).
+	self takingDamages: dmg
 	
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackByDestroyer: aShip in: aRegion [
-
+Ship >> attackByDestroyer: aDestroyer in: aRegion [
+| dmg |
+	dmg := aDestroyer damage
+	       *
+	       (aDestroyer regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (aDestroyer regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).
+	self takingDamages: dmg
 	
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackByFighter: aShip in: aRegion [
-
+Ship >> attackByFighter: aFighter in: aRegion [
+	| dmg |
+	dmg := aFighter damage
+	       *
+	       (aFighter regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (aFighter regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).
+	self takingDamages: dmg
 	
 ]
 

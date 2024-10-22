@@ -9,5 +9,6 @@ Class {
 DeepSpace >> initialize [
 
 	super initialize.
-	name := 'Deep Space'
+	name := 'Deep Space'.
+	id := 'DeepSpace'
 ]
