@@ -14,6 +14,29 @@ SpaceGameTest >> testAsteroidFieldHasAsteroidFieldName [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [
+
+	| fleet1 fleet2 bc1 bc2 region1 region2 damageToFleet1 damageToFleet2 battleResult |
+	"Initialisation des vaisseaux et des flottes"
+	bc1 := BattleCruiser new.
+	bc2 := BattleCruiser new.
+		"Définition de la région de combat"
+	region1 := InhabitedSolarSystem new.
+	region2 := InhabitedSolarSystem new.
+	
+	fleet1 := Fleet new initializeWith: bc1 numberOfShips: 1 in: region1.
+	fleet2 := Fleet new initializeWith: bc2 numberOfShips: 1 in: region2.
+
+
+
+	fleet1 ships first
+		attackByBattleCruiser: fleet2 ships first
+		in: region1.
+
+	self assert: fleet1 ships first shield equals: 200
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testDeepSpaceHasDeepSpaceName [
 
 	| d |
@@ -83,4 +106,24 @@ SpaceGameTest >> testNebulaHasNebulaName [
 	| n |
 	n := Nebula new.
 	self assert: n name equals: 'Nebula'
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testTakingDamage [
+
+    | bc bc2|
+    bc := BattleCruiser new.
+    bc takingDamages: 100.
+    self assert: bc shield equals: 1100. 
+    self assert: bc hull equals: 6000. 
+    bc takingDamages: 1500.
+    self assert: bc shield equals: 0. 
+    self assert: bc hull equals: 5600. 
+    bc takingDamages: 10000.
+    self assert: bc shield equals: 0. 
+    self assert: bc hull equals: 0. 
+    bc2 := BattleCruiser new.
+    bc2 takingDamages: 10000.
+    self assert: bc2 shield equals: 0. 
+    self assert: bc2 hull equals: 0. 
 ]
