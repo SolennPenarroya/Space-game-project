@@ -9,6 +9,22 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'as yet unclassified' }
+Fleet >> OtherShipTakingDamages: anInteger [
+
+	ships isEmpty
+		ifTrue: [ 'Fleet is out of boats' ]
+		ifFalse: [ ships atRandom takingDamages: anInteger ]
+]
+
+{ #category : 'as yet unclassified' }
+Fleet >> OtherShipTakingDamages: anInteger Ship: previousShip [
+	self removeShip: previousShip.
+	ships isEmpty
+		ifTrue: [ 'Fleet is out of boats' ]
+		ifFalse: [ ships atRandom takingDamages: anInteger ]
+]
+
 { #category : 'adding' }
 Fleet >> addShip: aShip [
 
@@ -44,6 +60,13 @@ Fleet >> region [
 { #category : 'accessing' }
 Fleet >> region:aRegion [
 region:=aRegion.
+]
+
+{ #category : 'removing' }
+Fleet >> removeShip: aShip [
+
+	aShip parentFleet: nil.
+	ships remove: aShip
 ]
 
 { #category : 'accessing' }
