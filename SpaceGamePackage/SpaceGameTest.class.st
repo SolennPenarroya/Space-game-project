@@ -127,3 +127,35 @@ SpaceGameTest >> testTakingDamage [
     self assert: bc2 shield equals: 0. 
     self assert: bc2 hull equals: 0. 
 ]
+
+{ #category : 'tests' }
+SpaceGameTest >> testTakingDamagesFleet [
+
+    | bc bc2 fleet region |
+    bc := BattleCruiser new.
+    bc2 := BattleCruiser new.
+    region := InhabitedSolarSystem new.
+    fleet := Fleet new initializeWith: bc in: region.
+    fleet addShip: bc2.
+    bc takingDamages: 100.
+    self assert: bc shield equals: 1100.
+    self assert: bc hull equals: 6000.
+    bc takingDamages: 1500.
+    self assert: bc shield equals: 0.
+    self assert: bc hull equals: 5600.
+    bc takingDamages: 5700.
+    self assert: bc shield equals: 0.
+    self assert: bc hull equals: 0.
+    self assert: bc2 shield equals: 1100.
+    self assert: bc2 hull equals: 6000.
+    
+    bc := BattleCruiser new.
+    bc2 := BattleCruiser new.
+    fleet := Fleet new initializeWith: bc in: region.
+    fleet addShip: bc2.
+    bc takingDamages: 1200+6000+1200+100.
+    self assert: bc shield equals: 0.
+    self assert: bc hull equals: 0.
+    self assert: bc2 shield equals: 0.
+    self assert: bc2 hull equals: 5900
+]
