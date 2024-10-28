@@ -13,9 +13,9 @@ Class {
 Fleet >> OtherShipTakingDamages: anInteger Ship: previousShip [
 
 	self removeShip: previousShip.
-	self isDestroyed 
+	self isDestroyed
 		ifTrue: [ 'Fleet is out of boats' ]
-		ifFalse: [ ships atRandom takingDamages: anInteger ]
+		ifFalse: [ ships first takingDamages: anInteger ]
 ]
 
 { #category : 'adding' }
@@ -49,6 +49,18 @@ Fleet >> isDestroyed [
 	ships isEmpty
 		ifTrue: [ ^ true ]
 		ifFalse: [ ^ false ]
+]
+
+{ #category : 'printing' }
+Fleet >> printOn: aStream [
+
+	aStream
+		nextPutAll: 'Fleet in region: ' , region printString;
+		cr.
+	ships do: [ :aShip |
+		aStream
+			nextPutAll: aShip printString;
+			cr ].
 ]
 
 { #category : 'accessing' }

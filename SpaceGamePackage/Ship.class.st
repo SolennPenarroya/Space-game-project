@@ -113,6 +113,23 @@ Ship >> parentFleet: aFleet [
 	parentFleet := aFleet
 ]
 
+{ #category : 'printing' }
+Ship >> printOn: aStream [
+
+	aStream
+		nextPutAll: name;
+		cr;
+		tab;
+		nextPutAll: '  Shield: ' , shield asString;
+		cr;
+		tab;
+		nextPutAll: '  Hull: ' , hull asString;
+		cr;
+		tab;
+		nextPutAll: '  Damage: ' , damage asString;
+		cr
+]
+
 { #category : 'accessing' }
 Ship >> region [
 	^ parentFleet region

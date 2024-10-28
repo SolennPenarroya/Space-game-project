@@ -37,3 +37,10 @@ Region >> name: aString [
 
 	name := aString
 ]
+
+{ #category : 'printing' }
+Region >> printOn: aStream [
+
+	aStream nextPutAll: name;
+	cr.
+]

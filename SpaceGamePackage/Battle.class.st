@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'fleetA',
 		'fleetB',
-		'regionA',
-		'regionB'
+		'turn'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
@@ -24,20 +23,45 @@ Battle >> fleetB [
 ]
 
 { #category : 'initialization' }
-Battle >> initializeWith: fleetOne in: regionOne versus: fleetTwo in: regionTwo [
-    fleetA := fleetOne.
-    regionA := regionOne.
-    fleetB := fleetTwo.
-    regionB := regionTwo.
+Battle >> initializeWith: fleetOne versus: fleetTwo [
+
+	super initialize.
+	fleetA := fleetOne.
+	fleetB := fleetTwo.
+	turn := 1.
+	self startBattle.
+]
+
+{ #category : 'as yet unclassified' }
+Battle >> startBattle [
+
+	| attacker defender |
+	[ fleetA isDestroyed or: [ fleetB isDestroyed or: [ turn >= 3 ] ] ]
+		whileFalse: [
+			attacker := fleetA ships atRandom.
+			defender := fleetB ships first.
+			defender attackBy: attacker in: defender region.
+			"swap"
+			attacker := fleetB ships atRandom.
+			defender := fleetA ships first.
+			defender attackBy: attacker in: defender region.
+			turn := turn + 1 ].
+
+	fleetA isDestroyed ifTrue: [
+		Transcript
+			show: 'Fleet A has been defeated.';
+			cr ].
+	fleetB isDestroyed ifTrue: [
+		Transcript
+			show: 'Fleet B has been defeated.';
+			cr ].
+	turn = 3 ifTrue: [
+		Transcript
+			show: 'No one has won.';
+			cr ]
 ]
 
 { #category : 'accessing' }
-Battle >> regionA [
-^regionA 
-]
-
-{ #category : 'accessing' }
-Battle >> regionB [
-
-	^ regionB
+Battle >> turn [
+	^ turn.
 ]
