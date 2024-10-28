@@ -56,6 +56,6 @@ Installation de Pharo
 
 Pour exécuter le projet :
 
-    Téléchargez et installez Pharo depuis pharo.org.
-    Ouvrez Pharo, puis chargez le code du projet dans l'image Pharo.
-    Lancez la simulation et explorez différents scénarios de combat en utilisant les classes et méthodes définies.
+- Téléchargez et installez Pharo depuis pharo.org.
+- Ouvrez Pharo, puis chargez le code du projet dans l'image Pharo.
+- Lancez la simulation et explorez différents scénarios de combat en utilisant les classes et méthodes définies.
