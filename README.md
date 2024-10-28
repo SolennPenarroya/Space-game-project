@@ -47,3 +47,15 @@ Chaque type de vaisseau possède des capacités et des faiblesses uniques en fon
 - Les pertes de chaque flotte.
 - Les vaisseaux restants de chaque côté.
 ---
+
+Technologie : Pharo
+
+Ce projet est développé en Pharo, un environnement de développement Smalltalk open-source orienté objet. Ce projet exploite les capacités de Pharo pour créer et tester dynamiquement des modèles de jeu, des règles de combat et des interactions spatiales en temps réel.
+
+Installation de Pharo
+
+Pour exécuter le projet :
+
+- Téléchargez et installez Pharo depuis pharo.org.
+- Ouvrez Pharo, puis chargez le code du projet dans l'image Pharo.
+- Lancez la simulation et explorez différents scénarios de combat en utilisant les classes et méthodes définies.
