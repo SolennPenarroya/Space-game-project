@@ -45,9 +45,10 @@ Fleet >> initializeWith: aShip numberOfShips: shipCount in: aRegion [
 
 { #category : 'testing' }
 Fleet >> isDestroyed [
-ships isEmpty
-		ifTrue: [ true ]
-		ifFalse: [ false ]
+
+	ships isEmpty
+		ifTrue: [ ^ true ]
+		ifFalse: [ ^ false ]
 ]
 
 { #category : 'accessing' }
