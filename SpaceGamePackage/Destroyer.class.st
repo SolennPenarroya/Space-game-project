@@ -19,6 +19,7 @@ Destroyer >> initialize [
 	shield := 5000.
 	hull := 10000.
 	damage := 2000.
+	regionModifier := self initializeRegionModifier
 ]
 
 { #category : 'initialization' }
@@ -59,5 +60,6 @@ Destroyer >> initializeRegionModifier [
 	defenseModifier at: 'Nebula' put: 1.
 	defenseModifier at: 'AsteroidField' put: 1.
 	defenseModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'defenseModifier' put: defenseModifier
+	regionModifier at: 'defenseModifier' put: defenseModifier.
+	^ regionModifier
 ]

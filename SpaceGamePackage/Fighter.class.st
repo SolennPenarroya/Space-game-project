@@ -19,6 +19,7 @@ Fighter >> initialize [
 	shield := 100.
 	hull := 400.
 	damage := 50.
+	regionModifier := self initializeRegionModifier
 ]
 
 { #category : 'as yet unclassified' }
@@ -59,5 +60,6 @@ Fighter >> initializeRegionModifier [
 	defenseModifier at: 'Nebula' put: 1.
 	defenseModifier at: 'AsteroidField' put: 1.
 	defenseModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'defenseModifier' put: defenseModifier
+	regionModifier at: 'defenseModifier' put: defenseModifier.
+	^ regionModifier
 ]
