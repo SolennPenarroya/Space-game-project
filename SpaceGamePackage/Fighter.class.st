@@ -11,13 +11,6 @@ Fighter >> attackedBy: anAttackingFleet in: aRegion [
 	^ anAttackingFleet attackedByFighter: self in: aRegion
 ]
 
-{ #category : 'as yet unclassified' }
-Fighter >> attackedByDestroyer: aDestroyer in: aRegion [
-	"x2 on shield and /2 on hull"
-
-	
-]
-
 { #category : 'initialization' }
 Fighter >> initialize [
 

@@ -12,13 +12,6 @@ BattleCruiser >> attackedBy: anAttackingFleet in: aRegion [
 ]
 
 { #category : 'as yet unclassified' }
-BattleCruiser >> attackedByDestroyer: aDestroyer in: aRegion [
-	"x2 on shield and /2 on hull"
-
-	
-]
-
-{ #category : 'as yet unclassified' }
 BattleCruiser >> attackedByFighter: aFighter in: aRegion [
 	"Si possède du shield = 0 sinon dmg"
 

@@ -11,13 +11,6 @@ Cruiser >> attackedBy: anAttackingFleet in: aRegion [
 	^ anAttackingFleet attackedByCruiser: self in: aRegion
 ]
 
-{ #category : 'as yet unclassified' }
-Cruiser >> attackedByDestroyer: aDestroyer in: aRegion [
-	"x2 on shield and /2 on hull"
-
-	
-]
-
 { #category : 'initialization' }
 Cruiser >> initialize [
 
