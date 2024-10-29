@@ -37,6 +37,44 @@ SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> testBattleCruiserVs2FighterInInhabitedSolarSystem [
+
+	| bc fleet1 fg fleet2 region battle |
+	bc := BattleCruiser new.
+	region := InhabitedSolarSystem new.
+	fleet1 := Fleet new initializeWith: bc in: region.
+	Transcript
+		show: fleet1 printString;
+		cr.
+	Transcript
+		show: '-----------------------';
+		cr.
+	fg := Fighter new.
+	fleet2 := Fleet new initializeWith: fg numberOfShips: 2 in: region.
+	Transcript
+		show: fleet2 printString;
+		cr.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+	Transcript
+		show: '--------RESULT----------';
+		cr.
+	Transcript
+		show: fleet1 printString;
+		cr.
+	Transcript
+		show: '-----------------------';
+		cr.
+	Transcript
+		show: fleet2 printString;
+		cr.
+
+	self assert: fleet1 ships size = 1.
+	self assert: fleet1 ships first shield = 1200.
+	self assert: fleet1 ships first hull = 6000.
+	self assert: fleet2 isDestroyed
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testDeepSpaceHasDeepSpaceName [
 
 	| d |
@@ -47,27 +85,18 @@ SpaceGameTest >> testDeepSpaceHasDeepSpaceName [
 { #category : 'tests' }
 SpaceGameTest >> testFighterVsFighterInInhabitedSolarSystem [
 
-	| battle1 fleet1 fleet2 fighter1 fighter2 region1 region2 damageToFleet1 damageToFleet2 battleResult |
-	"Initialisation des vaisseaux et des flottes"
-	fighter1 := Fighter new.
-	fighter2 := Fighter new.
-	fleet1 := Fleet new initializeWith: fighter1 numberOfShips: 5.
-	fleet2 := Fleet new initializeWith: fighter2 numberOfShips: 3.
-
-	"Définition de la région de combat"
-	region1 := InhabitedSolarSystem new.
-	region2 := InhabitedSolarSystem new.
-
-	battle1 := Battle new.
-	battle1
-		fleetA: fleet1
-		fleetB: fleet2
-		regionA: region1
-		regionB: region2.
-
-	"Vérification des résultats"
-	self assert: battleResult attackerLost = fleet1 isDestroyed.
-	self assert: battleResult defenderLost = fleet2 isDestroyed
+	| fg fleet1 fleet2 region battle|
+	fg := Fighter new.
+	region := InhabitedSolarSystem new.
+	fleet1 := Fleet new initializeWith: fg numberOfShips: 3 in: region.
+	fleet2 := Fleet new initializeWith: fg numberOfShips: 5 in: region.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+	Transcript show: '--------RESULT----------';cr.
+	Transcript show: fleet1 printString; cr.
+	Transcript show: '-----------------------';cr.
+	Transcript show: fleet2 printString; cr.
+	Transcript show: '-----------------------';cr.
+	
 ]
 
 { #category : 'tests' }

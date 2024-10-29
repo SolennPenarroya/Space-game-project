@@ -19,6 +19,7 @@ Cruiser >> initialize [
 	shield := 1000.
 	hull := 8000.
 	damage := 400.
+	regionModifier := self initializeRegionModifier
 ]
 
 { #category : 'initialization' }
@@ -59,5 +60,6 @@ Cruiser >> initializeRegionModifier [
 	defenseModifier at: 'Nebula' put: 1.
 	defenseModifier at: 'AsteroidField' put: 1.
 	defenseModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'defenseModifier' put: defenseModifier
+	regionModifier at: 'defenseModifier' put: defenseModifier.
+	^ regionModifier
 ]
