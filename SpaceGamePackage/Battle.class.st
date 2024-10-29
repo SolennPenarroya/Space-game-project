@@ -36,8 +36,8 @@ Battle >> initializeWith: fleetOne versus: fleetTwo [
 Battle >> startBattle [
 
 	| attacker defender sizeFleetA sizeFleetB|
-	sizeFleetA := fleetA size.
-	sizeFleetB := fleetB size.
+	sizeFleetA := fleetA ships size.
+	sizeFleetB := fleetB ships size.
 	[ fleetA isDestroyed or: [ fleetB isDestroyed or: [ turn >= 3 ] ] ]
 		whileFalse: [
 			attacker := fleetA ships atRandom.
@@ -49,13 +49,13 @@ Battle >> startBattle [
 			defender attackedBy: attacker in: defender region.
 			turn := turn + 1 ].
 	
-	sizeFleetA := sizeFleetA - fleetA size.
-	sizeFleetB := sizeFleetB - fleetB size.
+	sizeFleetA := sizeFleetA - fleetA ships size.
+	sizeFleetB := sizeFleetB - fleetB ships size.
 	
-	sizeFleetA > 0 ifTrue: [ Transcript nextPutAll: 'Fleet A has ' , sizeFleetA asString; nextPutAll: 'remaining ships'; cr].
+	sizeFleetA > 0 ifTrue: [ Transcript nextPutAll: 'Fleet A has ' , sizeFleetA asString; nextPutAll: ' remaining ships'; cr].
 	sizeFleetA = 0 ifTrue: [ Transcript nextPutAll: 'Fleet A has been defeated, no ship remaining'; cr].
 	
-	sizeFleetB > 0 ifTrue: [ Transcript nextPutAll: 'Fleet B has ' , sizeFleetB asString; nextPutAll: 'remaining ships'; cr].
+	sizeFleetB > 0 ifTrue: [ Transcript nextPutAll: 'Fleet B has ' , sizeFleetB asString; nextPutAll: ' remaining ships'; cr].
 	sizeFleetB = 0 ifTrue: [ Transcript nextPutAll: 'Fleet B has been defeated, no ship remaining'; cr].
 	
 	fleetA isDestroyed ifTrue: [
