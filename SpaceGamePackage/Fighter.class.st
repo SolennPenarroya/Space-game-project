@@ -6,16 +6,16 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Fighter >> attackByDestroyer: aDestroyer in: aRegion [
-	"x2 on shield and /2 on hull"
+Fighter >> attackedBy: anAttackingFleet in: aRegion [
 
-	
+	^ anAttackingFleet attackedByFighter: self in: aRegion
 ]
 
 { #category : 'as yet unclassified' }
-Fighter >> attackedBy: anAttackingFleet in: aRegion [
+Fighter >> attackedByDestroyer: aDestroyer in: aRegion [
+	"x2 on shield and /2 on hull"
 
-	^ anAttackingFleet attackFighter: self in: aRegion 
+	
 ]
 
 { #category : 'initialization' }

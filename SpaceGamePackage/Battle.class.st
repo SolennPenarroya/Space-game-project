@@ -40,11 +40,11 @@ Battle >> startBattle [
 		whileFalse: [
 			attacker := fleetA ships atRandom.
 			defender := fleetB ships first.
-			defender attackBy: attacker in: defender region.
+			defender attackedBy: attacker in: defender region.
 			"swap"
 			attacker := fleetB ships atRandom.
 			defender := fleetA ships first.
-			defender attackBy: attacker in: defender region.
+			defender attackedBy: attacker in: defender region.
 			turn := turn + 1 ].
 
 	fleetA isDestroyed ifTrue: [

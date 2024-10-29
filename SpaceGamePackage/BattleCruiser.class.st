@@ -6,37 +6,35 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-BattleCruiser >> attackByDestroyer: aDestroyer in: aRegion [
+BattleCruiser >> attackedBy: anAttackingFleet in: aRegion [
+
+	^ anAttackingFleet attackedByBattleCruiser: self in: aRegion
+]
+
+{ #category : 'as yet unclassified' }
+BattleCruiser >> attackedByDestroyer: aDestroyer in: aRegion [
 	"x2 on shield and /2 on hull"
 
 	
 ]
 
 { #category : 'as yet unclassified' }
-BattleCruiser >> attackByFighter: aFighter in: aRegion [
+BattleCruiser >> attackedByFighter: aFighter in: aRegion [
 	"Si possède du shield = 0 sinon dmg"
+
 	| dmg |
 	dmg := 0.
 	self shield > 0
-	ifTrue: [  ]
-	ifFalse: [
+		ifTrue: [  ]
+		ifFalse: [
 			dmg := aFighter damage
-	       *
-	       (aFighter regionModifier at: 'damageModifier' at: aRegion id)
-	       *
-	       (aFighter regionModifier
-		        at: 'defenseModifier'
-		        at: self region id).].
+			       *
+			       (aFighter regionModifier at: 'damageModifier' at: aRegion id)
+			       *
+			       (aFighter regionModifier
+				        at: 'defenseModifier'
+				        at: self region id) ].
 	self takingDamages: dmg
-	
-
-	
-]
-
-{ #category : 'as yet unclassified' }
-BattleCruiser >> attackedBy: anAttackingFleet in: aRegion [
-
-	^ anAttackingFleet attackBattleCruiser: self in: aRegion.
 ]
 
 { #category : 'initialization' }

@@ -14,38 +14,45 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Ship >> attackByBattleCruiser: aBattleCuiser in: aRegion [
+Ship >> attackedBy: anEnnemiFleet in: aRegion [
+
+	self subclassResponsibility
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> attackedByBattleCruiser: aBattleCuiser in: aRegion [
 
 	| dmg |
 	dmg := aBattleCuiser damage
 	       *
 	       (aBattleCuiser regionModifier
 		        at: 'damageModifier'
-		        at: aRegion id) * (aBattleCuiser regionModifier
-		        at: 'defenseModifier'
-		        at: self region id).
-	self takingDamages: dmg
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> attackByCruiser: aCruiser in: aRegion [
-| dmg |
-	dmg := aCruiser damage
-	       *
-	       (aCruiser regionModifier
-		        at: 'damageModifier'
 		        at: aRegion id)
 	       *
+	       (aBattleCuiser regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).
+	self takingDamages: dmg
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> attackedByCruiser: aCruiser in: aRegion [
+
+	| dmg |
+	dmg := aCruiser damage
+	       *
+	       (aCruiser regionModifier at: 'damageModifier' at: aRegion id)
+	       *
 	       (aCruiser regionModifier
 		        at: 'defenseModifier'
 		        at: self region id).
 	self takingDamages: dmg
-	
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackByDestroyer: aDestroyer in: aRegion [
-| dmg |
+Ship >> attackedByDestroyer: aDestroyer in: aRegion [
+
+	| dmg |
 	dmg := aDestroyer damage
 	       *
 	       (aDestroyer regionModifier at: 'damageModifier' at: aRegion id)
@@ -54,11 +61,11 @@ Ship >> attackByDestroyer: aDestroyer in: aRegion [
 		        at: 'defenseModifier'
 		        at: self region id).
 	self takingDamages: dmg
-	
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackByFighter: aFighter in: aRegion [
+Ship >> attackedByFighter: aFighter in: aRegion [
+
 	| dmg |
 	dmg := aFighter damage
 	       *
@@ -68,13 +75,6 @@ Ship >> attackByFighter: aFighter in: aRegion [
 		        at: 'defenseModifier'
 		        at: self region id).
 	self takingDamages: dmg
-	
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> attackedBy: anEnnemiFleet in: aRegion [
-
-	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
