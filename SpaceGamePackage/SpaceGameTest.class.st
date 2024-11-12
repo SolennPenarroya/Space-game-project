@@ -25,6 +25,28 @@ SpaceGameTest >> test1BattleFighterAttack1FighterInInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> testBattle10CruisersInAsteroidFieldAttack3BattlecruiserInDeepSpace [
+
+	| destroyer fleet1 battleCruiser fleet2 region1 region2 battle |
+	destroyer := Destroyer new.
+	battleCruiser := Fighter new.
+	region1 := DeepSpace new.
+	region2 := Nebula new.
+	fleet1 := Fleet new initializeWith: destroyer numberOfShips: 5 in: region1.
+	fleet2 := Fleet new initializeWith: battleCruiser numberOfShips: 3 in: region2.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+
+	self assert: fleet1 ships size equals: 5.
+	self assert: fleet2 ships size equals: 2.
+	self assert: fleet1 ships first shield equals: 0.
+	self assert: fleet1 ships first hull equals: 5500.
+	self assert: fleet2 ships first shield equals: 0.
+	self assert: fleet2 ships first hull equals: 3000.
+
+	
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testBattle20FighterAttack1BattlecruiserInInhabitedSolarSystem [
 
 	| bc fleet1 fg fleet2 region battle |
