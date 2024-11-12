@@ -125,8 +125,6 @@ Battle >> printOn: aStream [
 { #category : 'as yet unclassified' }
 Battle >> startBattle [
 
-	| defender |
-	self addLogStart.
 	[ fleetA isDestroyed or: [ fleetB isDestroyed or: [ turn > 3 ] ] ]
 		whileFalse: [
 			fleetA ships do: [ :attacker |
