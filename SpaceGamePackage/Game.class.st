@@ -7,8 +7,3 @@ Class {
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
-
-{ #category : 'tests' }
-Game >> test [ 
-^ true
-]
