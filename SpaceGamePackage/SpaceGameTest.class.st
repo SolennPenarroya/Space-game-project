@@ -44,6 +44,24 @@ SpaceGameTest >> test20FighterAttack1BattlecruiserInInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> test2FighterAttack1BattlecruiserInInhabitedSolarSystem [
+
+	| bc fleet1 fg fleet2 region battle |
+	bc := BattleCruiser new.
+	fg := Fighter new.
+	region := InhabitedSolarSystem new.
+	fleet1 := Fleet new initializeWith: fg numberOfShips: 2 in: region.
+	fleet2 := Fleet new initializeWith: bc in: region.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+
+	self assert: fleet1 isDestroyed equals: true.
+	self assert: fleet2 ships first shield equals: 11900.
+	self assert: fleet2 ships first hull equals: 6000.
+
+	
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testAsteroidFieldHasAsteroidFieldName [
 
 	| a |
@@ -72,44 +90,6 @@ SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [
 		in: region1.
 
 	self assert: fleet1 ships first shield equals: 200
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testBattleCruiserVs2FighterInInhabitedSolarSystem [
-
-	| bc fleet1 fg fleet2 region battle |
-	bc := BattleCruiser new.
-	region := InhabitedSolarSystem new.
-	fleet1 := Fleet new initializeWith: bc in: region.
-	Transcript
-		show: fleet1 printString;
-		cr.
-	Transcript
-		show: '-----------------------';
-		cr.
-	fg := Fighter new.
-	fleet2 := Fleet new initializeWith: fg numberOfShips: 2 in: region.
-	Transcript
-		show: fleet2 printString;
-		cr.
-	battle := Battle new initializeWith: fleet1 versus: fleet2.
-	Transcript
-		show: '--------RESULT----------';
-		cr.
-	Transcript
-		show: fleet1 printString;
-		cr.
-	Transcript
-		show: '-----------------------';
-		cr.
-	Transcript
-		show: fleet2 printString;
-		cr.
-
-	self assert: fleet1 ships size = 1.
-	self assert: fleet1 ships first shield = 1200.
-	self assert: fleet1 ships first hull = 6000.
-	self assert: fleet2 isDestroyed
 ]
 
 { #category : 'tests' }
