@@ -19,18 +19,14 @@ BoardTile >> board [
 ]
 
 { #category : 'initialization' }
-BoardTile >> initialize [
+BoardTile >> initializeX: xPos y: yPos region: aRegion fleet: aFleet board: aBoard [
 
 	super initialize.
-]
-
-{ #category : 'initialization' }
-BoardTile >> initializeX: xPos y: yPos region: aRegion fleet: aFleet [
-
 	x := xPos.
 	y := yPos.
 	region := aRegion.
 	fleet := aFleet.
+	board := aBoard.
 ]
 
 { #category : 'testing' }
@@ -42,12 +38,6 @@ BoardTile >> isOccupiedByFleet [
 { #category : 'accessing' }
 BoardTile >> region [
 ^region 
-]
-
-{ #category : 'initialization' }
-BoardTile >> setBoard: aBoard [
-
-	board := aBoard
 ]
 
 { #category : 'accessing' }
