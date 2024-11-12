@@ -63,7 +63,6 @@ Ship >> attackedByDestroyer: aDestroyer in: aRegion [
 		ifTrue: [ shield := remaining ]
 		ifFalse: [
 			shield := 0.
-
 			remaining := hull + remaining/4.
 			remaining > 0
 				ifTrue: [ hull := remaining ]
