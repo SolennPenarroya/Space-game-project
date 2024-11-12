@@ -62,14 +62,6 @@ SpaceGameTest >> test2FighterAttack1BattlecruiserInInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testAsteroidFieldHasAsteroidFieldName [
-
-	| a |
-	a := AsteroidField new.
-	self assert: a name equals: 'Asteroid Field'
-]
-
-{ #category : 'tests' }
 SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [ 
 
 	| fleet1 fleet2 bc1 bc2 region1 region2 damageToFleet1 damageToFleet2 battleResult |
@@ -93,15 +85,7 @@ SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testDeepSpaceHasDeepSpaceName [
-
-	| d |
-	d := DeepSpace new.
-	self assert: d name equals: 'Deep Space'
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testFleetInitializeWith1Fighter [
+SpaceGameTest >> testInitializeFleetWith1Fighter [
 
 	| fleet fighter region|
 	fighter := Fighter new.
@@ -112,7 +96,7 @@ SpaceGameTest >> testFleetInitializeWith1Fighter [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testFleetInitializeWith5Fighter [
+SpaceGameTest >> testInitializeFleetWith5Fighter [
 
 	| fleet fighter region |
 	fighter := Fighter new.
@@ -123,7 +107,23 @@ SpaceGameTest >> testFleetInitializeWith5Fighter [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testInhabitedSolarSystemHasInhabitedSolarSystemName [
+SpaceGameTest >> testNameAsteroidField [
+
+	| a |
+	a := AsteroidField new.
+	self assert: a name equals: 'Asteroid Field'
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testNameDeepSpace [
+
+	| d |
+	d := DeepSpace new.
+	self assert: d name equals: 'Deep Space'
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testNameInhabitedSolarSystem [
 
 	| i |
 	i := InhabitedSolarSystem new.
@@ -131,7 +131,7 @@ SpaceGameTest >> testInhabitedSolarSystemHasInhabitedSolarSystemName [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testNebulaHasNebulaName [
+SpaceGameTest >> testNameNebula [
 
 	| n |
 	n := Nebula new.
