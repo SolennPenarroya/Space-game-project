@@ -2,23 +2,15 @@ Class {
 	#name : 'BoardTile',
 	#superclass : 'Object',
 	#instVars : [
+		'x',
+		'y',
 		'region',
 		'fleet',
-		'isOccupied'
+		'board'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
-
-{ #category : 'protected' }
-BoardTile >> basicPosition: aPosition [
-	"A position is a x,y kind of object."
-
-	"to probably remove and introduce basicX: and basicY:"
-
-	x := aPosition x.
-	y := aPosition y
-]
 
 { #category : 'accessing' }
 BoardTile >> board [
@@ -33,17 +25,19 @@ BoardTile >> initialize [
 	self basicPosition: 1 @ 1
 ]
 
-{ #category : 'accessing' }
-BoardTile >> position [
+{ #category : 'initialization' }
+BoardTile >> initializeX: xPos y: yPos region: aRegion fleet: aFleet [
 
-	^ x @ y
+	x := xPos.
+	y := yPos.
+	region := aRegion.
+	fleet := aFleet.
 ]
 
-{ #category : 'accessing' }
-BoardTile >> position: aPoint [
+{ #category : 'testing' }
+BoardTile >> isOccupiedByFleet [
 
-	self basicPosition: aPoint.
-	self board atX: aPoint x atY: aPoint y put: self
+	^ fleet notNil 
 ]
 
 { #category : 'accessing' }

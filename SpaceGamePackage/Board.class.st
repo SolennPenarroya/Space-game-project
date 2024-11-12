@@ -2,7 +2,7 @@ Class {
 	#name : 'Board',
 	#superclass : 'Object',
 	#instVars : [
-		'tiles'
+		'map'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
