@@ -55,22 +55,23 @@ Ship >> attackedByDestroyer: aDestroyer in: aRegion [
 	| dmg remaining |
 	dmg := self damage
 	       * (self regionModifier at: 'damageModifier' at: aRegion id)
-	       * (self regionModifier at: 'defenseModifier' at: self region id).
+	       *
+	       (self regionModifier at: 'defenseModifier' at: self region id).
 
 
-	remaining := shield - dmg*2.
+	remaining := shield - (dmg * 2).
 	remaining > 0
 		ifTrue: [ shield := remaining ]
 		ifFalse: [
 			shield := 0.
-			remaining := hull + remaining/4.
+			remaining := hull + remaining / 4.
 			remaining > 0
 				ifTrue: [ hull := remaining ]
 				ifFalse: [
 					hull := 0.
 					parentFleet
-						otherShipTakingDamages: 0 - (remaining*4) ship: aShip ] ]
-
+						otherShipTakingDamages: 0 - (remaining * 4)
+						ship: aDestroyer ] ]
 ]
 
 { #category : 'as yet unclassified' }
