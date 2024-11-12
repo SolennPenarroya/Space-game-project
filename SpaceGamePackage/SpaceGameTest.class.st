@@ -6,6 +6,25 @@ Class {
 }
 
 { #category : 'tests' }
+SpaceGameTest >> test20FighterAttack1BattlecruiserInInhabitedSolarSystem [
+
+	| bc fleet1 fg fleet2 region battle |
+	bc := BattleCruiser new.
+	fg := Fighter new.
+	region := InhabitedSolarSystem new.
+	fleet1 := Fleet new initializeWith: fg numberOfShips: 20 in: region.
+	fleet2 := Fleet new initializeWith: bc in: region.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+
+	
+	self assert: fleet1 ships size equals: 14.
+	self assert: fleet1 ships first shield equals: 100.
+	self assert: fleet2 ships first shield equals: 12000.
+
+	
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testAsteroidFieldHasAsteroidFieldName [
 
 	| a |

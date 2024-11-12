@@ -35,7 +35,7 @@ BattleCruiser >> initialize [
 
 	super initialize.
 	name := 'Battle Cruiser'.
-	shield := 1200.
+	shield := 12000.
 	hull := 6000.
 	damage := 1000.
 	regionModifier := self initializeRegionModifier.

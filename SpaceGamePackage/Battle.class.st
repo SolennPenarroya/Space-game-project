@@ -38,7 +38,7 @@ Battle >> startBattle [
 	| attacker defender sizeFleetA sizeFleetB|
 	sizeFleetA := fleetA ships size.
 	sizeFleetB := fleetB ships size.
-	[ fleetA isDestroyed or: [ fleetB isDestroyed or: [ turn >= 3 ] ] ]
+	[ fleetA isDestroyed or: [ fleetB isDestroyed or: [ turn > 3 ] ] ]
 		whileFalse: [
 			attacker := fleetA ships atRandom.
 			defender := fleetB ships first.
