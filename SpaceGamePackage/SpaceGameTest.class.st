@@ -84,9 +84,9 @@ SpaceGameTest >> testBattle5DestroyerInDeepSpaceAttack3BattlecruiserInNebula [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [ 
+SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [
 
-	| fleet1 fleet2 bc1 bc2 region1 region2 damageToFleet1 damageToFleet2 battleResult |
+	| fleet1 fleet2 bc1 bc2 region1 region2 |
 	"Initialisation des vaisseaux et des flottes"
 	bc1 := BattleCruiser new.
 	bc2 := BattleCruiser new.
@@ -100,14 +100,13 @@ SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [
 
 
 	fleet1 ships first
-		attackByBattleCruiser: fleet2 ships first
+		attackedByBattleCruiser: fleet2 ships first
 		in: region1.
 
-	self assert: fleet1 ships first shield equals: 200
+	self assert: fleet1 ships first shield equals: 1200
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> testInitializeFleetWith1Fighter [
 
 	| fleet fighter region|
 	fighter := Fighter new.
