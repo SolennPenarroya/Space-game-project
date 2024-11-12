@@ -12,20 +12,22 @@ BattleCruiser >> attackedBy: anAttackingFleet in: aRegion [
 ]
 
 { #category : 'as yet unclassified' }
-BattleCruiser >> attackedByFighter: aShip in: aRegion [
+BattleCruiser >> attackedByFighter: aFighter in: aRegion [
 	"Si possède du shield = 0 sinon dmg"
 
 	| dmg |
 	dmg := 0.
-	aShip shield > 0
+	self shield > 0
+		ifTrue: [  ]
 		ifFalse: [
-			dmg := self damage
-			       * (self regionModifier at: 'damageModifier' at: aRegion id)
+			dmg := aFighter damage
 			       *
-			       (self regionModifier
+			       (aFighter regionModifier at: 'damageModifier' at: aRegion id)
+			       *
+			       (aFighter regionModifier
 				        at: 'defenseModifier'
 				        at: self region id) ].
-	aShip takingDamages: dmg
+	self takingDamages: dmg
 ]
 
 { #category : 'initialization' }
