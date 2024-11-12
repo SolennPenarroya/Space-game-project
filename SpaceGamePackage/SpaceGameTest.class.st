@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'tests' }
-SpaceGameTest >> test1FighterVs1FighterInInhabitedSolarSystem [
+SpaceGameTest >> test1BattleFighterAttack1FighterInInhabitedSolarSystem [
 
 	| fg fleet1 fleet2 region battle|
 	fg := Fighter new.
@@ -25,7 +25,7 @@ SpaceGameTest >> test1FighterVs1FighterInInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> test20FighterAttack1BattlecruiserInInhabitedSolarSystem [
+SpaceGameTest >> testBattle20FighterAttack1BattlecruiserInInhabitedSolarSystem [
 
 	| bc fleet1 fg fleet2 region battle |
 	bc := BattleCruiser new.
@@ -44,7 +44,7 @@ SpaceGameTest >> test20FighterAttack1BattlecruiserInInhabitedSolarSystem [
 ]
 
 { #category : 'tests' }
-SpaceGameTest >> test2FighterAttack1BattlecruiserInInhabitedSolarSystem [
+SpaceGameTest >> testBattle2FighterAttack1BattlecruiserInInhabitedSolarSystem [
 
 	| bc fleet1 fg fleet2 region battle |
 	bc := BattleCruiser new.
@@ -57,6 +57,28 @@ SpaceGameTest >> test2FighterAttack1BattlecruiserInInhabitedSolarSystem [
 	self assert: fleet1 isDestroyed equals: true.
 	self assert: fleet2 ships first shield equals: 11900.
 	self assert: fleet2 ships first hull equals: 6000.
+
+	
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testBattle5DestroyerInDeepSpaceAttack3BattlecruiserInNebula [
+
+	| destroyer fleet1 battleCruiser fleet2 region1 region2 battle |
+	destroyer := Destroyer new.
+	battleCruiser := Fighter new.
+	region1 := DeepSpace new.
+	region2 := Nebula new.
+	fleet1 := Fleet new initializeWith: destroyer numberOfShips: 5 in: region1.
+	fleet2 := Fleet new initializeWith: battleCruiser numberOfShips: 3 in: region2.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+
+	self assert: fleet1 ships size equals: 5.
+	self assert: fleet2 ships size equals: 2.
+	self assert: fleet1 ships first shield equals: 0.
+	self assert: fleet1 ships first hull equals: 5500.
+	self assert: fleet2 ships first shield equals: 0.
+	self assert: fleet2 ships first hull equals: 3000.
 
 	
 ]
