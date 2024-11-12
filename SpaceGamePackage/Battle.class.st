@@ -4,11 +4,86 @@ Class {
 	#instVars : [
 		'fleetA',
 		'fleetB',
-		'turn'
+		'turn',
+		'battleLogs',
+		'nbShipsFleetA',
+		'nbShipsFleetB'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
 }
+
+{ #category : 'adding' }
+Battle >> addLogResult [
+
+	nbShipsFleetA := nbShipsFleetA - fleetA ships size.
+	nbShipsFleetB := nbShipsFleetB - fleetB ships size.
+	self logBattle: '--------RESULT----------'.
+	self logBattle: String cr.
+	nbShipsFleetA > 0 ifTrue: [
+		self logBattle:'Fleet A has ' , nbShipsFleetA asString , ' ship(s) lost'.
+		self logBattle: String cr.].
+	fleetA isDestroyed
+	ifTrue: [ 
+		self logBattle: 'Fleet A has been defeated.']
+	ifFalse: [ 
+		self logBattle: fleetA asString].
+	self logBattle: String cr.
+	self logBattle: '-----------------------'.
+	self logBattle: String cr.
+	nbShipsFleetB > 0 ifTrue: [
+		self logBattle:'Fleet B has ' , nbShipsFleetB asString , ' ship(s) lost'.
+		self logBattle: String cr.].
+	fleetB isDestroyed
+		ifTrue: [ self logBattle: 'Fleet B has been defeated.' ]
+		ifFalse: [ self logBattle: fleetB asString].
+	self logBattle: String cr.
+	self logBattle: '-----------------------'.
+	self logBattle: String cr
+]
+
+{ #category : 'adding' }
+Battle >> addLogStart [
+
+	self logBattle: '------START BATTLE-------'.
+	self logBattle: String cr.
+	self logBattle: 'fleetA'.
+	self logBattle: String cr.
+	self logBattle: fleetA asString.
+	self logBattle: String cr.
+	self logBattle: '-----------------------'.
+	self logBattle: String cr.
+	self logBattle: 'fleetB'.
+	self logBattle: String cr.
+	self logBattle: fleetB asString.
+	self logBattle: String cr
+]
+
+{ #category : 'as yet unclassified' }
+Battle >> addLogTurn [
+
+	self logBattle: '----------------------------------- '.
+	self logBattle: String cr.
+	self logBattle: 'turn: '.
+	self logBattle: turn.
+	self logBattle: String cr.
+	self logBattle: 'Fleet A -> Fleet B '.
+	self logBattle: String cr.
+	self logBattle: 'Ship def: '.
+	self logBattle: fleetA asString.
+	self logBattle: String cr.
+	self logBattle: 'Fleet B -> Fleet A '.
+	self logBattle: String cr.
+	self logBattle: 'Ship def: '.
+	self logBattle: fleetB asString.
+	self logBattle: String cr
+]
+
+{ #category : 'accessing' }
+Battle >> battleLogs [ [
+        ^ battleLogs
+    ]
+]
 
 { #category : 'accessing' }
 Battle >> fleetA [
@@ -29,77 +104,40 @@ Battle >> initializeWith: fleetOne versus: fleetTwo [
 	fleetA := fleetOne.
 	fleetB := fleetTwo.
 	turn := 1.
-	self startBattle.
+	battleLogs := OrderedCollection new.
+	nbShipsFleetA := fleetA ships size.
+	nbShipsFleetB := fleetB ships size.
+	self startBattle
+]
+
+{ #category : 'as yet unclassified' }
+Battle >> logBattle: aLogEntry [
+
+	battleLogs add: aLogEntry
+]
+
+{ #category : 'printing' }
+Battle >> printOn: aStream [
+
+	battleLogs do: [ :logEntry | logEntry printOn: aStream ]
 ]
 
 { #category : 'as yet unclassified' }
 Battle >> startBattle [
 
-	| defender sizeFleetA sizeFleetB |
-	sizeFleetA := fleetA ships size.
-	sizeFleetB := fleetB ships size.
-
+	| defender |
+	self addLogStart.
 	[ fleetA isDestroyed or: [ fleetB isDestroyed or: [ turn > 3 ] ] ]
 		whileFalse: [
-			Transcript
-			nextPutAll: '----------------------------------- ';
-				cr;
-				nextPutAll: 'turn: ';
-				print: turn asString;
-				cr;
-				nextPutAll: '----------------------------------- ';
-				cr. 
-				
 			fleetA ships do: [ :attacker |
 				defender := fleetB ships first.
 				defender attackedBy: attacker in: defender region ].
-
-			Transcript
-				nextPutAll: 'Fleet A -> Fleet B ';
-				cr;
-				nextPutAll: 'Ship def: ';
-				print: defender;
-				cr.
-
 			fleetB ships do: [ :attacker |
 				defender := fleetA ships first.
 				defender attackedBy: attacker in: defender region ].
-
-			Transcript
-				nextPutAll: 'Fleet B -> Fleet A ';
-				cr;
-				nextPutAll: 'Ship def: ';
-				print: defender;
-				cr.
-				turn := turn + 1.].
-
-	sizeFleetA := sizeFleetA - fleetA ships size.
-	sizeFleetB := sizeFleetB - fleetB ships size.
-
-	sizeFleetA > 0 ifTrue: [
-		Transcript
-			nextPutAll: 'Fleet A has ' , sizeFleetA asString;
-			nextPutAll: ' ship(s) lost';
-			cr ].
-
-	sizeFleetB > 0 ifTrue: [
-		Transcript
-			nextPutAll: 'Fleet B has ' , sizeFleetB asString;
-			nextPutAll: ' ship(s) lost';
-			cr ].
-
-	fleetA isDestroyed ifTrue: [
-		Transcript
-			show: 'Fleet A has been defeated.';
-			cr ].
-	fleetB isDestroyed ifTrue: [
-		Transcript
-			show: 'Fleet B has been defeated.';
-			cr ].
-	turn = 4 ifTrue: [
-		Transcript
-			show: 'No one has won.';
-			cr ]
+			self addLogTurn.
+			turn := turn + 1 ].
+	self addLogResult
 ]
 
 { #category : 'accessing' }

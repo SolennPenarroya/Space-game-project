@@ -18,11 +18,9 @@ BattleCruiser >> attackedByFighter: aShip in: aRegion [
 	| dmg |
 	dmg := 0.
 	aShip shield > 0
-		ifTrue: [  ]
 		ifFalse: [
 			dmg := self damage
-			       *
-			       (self regionModifier at: 'damageModifier' at: aRegion id)
+			       * (self regionModifier at: 'damageModifier' at: aRegion id)
 			       *
 			       (self regionModifier
 				        at: 'defenseModifier'

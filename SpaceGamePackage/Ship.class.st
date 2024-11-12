@@ -71,7 +71,7 @@ Ship >> attackedByDestroyer: aShip in: aRegion [
 				ifTrue: [ hull := remaining ]
 				ifFalse: [
 					hull := 0.
-					parentFleet OtherShipTakingDamages: 0 - remaining Ship: aShip ] ]
+					parentFleet otherShipTakingDamages: 0 - remaining ship: aShip ] ]
 ]
 
 { #category : 'as yet unclassified' }
@@ -179,5 +179,5 @@ Ship >> takingDamages: dmgTaken [
 				ifTrue: [ hull := remaining ]
 				ifFalse: [
 					hull := 0.
-					parentFleet OtherShipTakingDamages: 0 - remaining Ship: self ] ]
+					parentFleet otherShipTakingDamages: 0 - remaining ship: self ] ]
 ]

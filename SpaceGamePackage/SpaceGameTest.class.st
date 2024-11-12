@@ -68,9 +68,9 @@ SpaceGameTest >> testBattleCruiserVs2FighterInInhabitedSolarSystem [
 		show: fleet2 printString;
 		cr.
 
-	self assert: fleet1 ships size = 1.
-	self assert: fleet1 ships first shield = 900.
-	self assert: fleet1 ships first hull = 6000.
+	self assert: fleet1 ships size equals: 1.
+	self assert: fleet1 ships first shield equals: 900.
+	self assert: fleet1 ships first hull equals: 6000
 ]
 
 { #category : 'tests' }
