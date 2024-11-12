@@ -6,6 +6,25 @@ Class {
 }
 
 { #category : 'tests' }
+SpaceGameTest >> test1FighterVs1FighterInInhabitedSolarSystem [
+
+	| fg fleet1 fleet2 region battle|
+	fg := Fighter new.
+	region := InhabitedSolarSystem new.
+	fleet1 := Fleet new initializeWith: fg numberOfShips: 1 in: region.
+	fleet2 := Fleet new initializeWith: fg numberOfShips: 1 in: region.
+	battle := Battle new initializeWith: fleet1 versus: fleet2.
+	
+	self assert: fleet1 ships size equals: 1.
+	self assert: fleet1 ships first shield equals: 0.
+	self assert: fleet1 ships first hull equals: 350.
+	self assert: fleet2 ships first shield equals: 0.
+	self assert: fleet2 ships first hull equals: 350.
+
+	
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> test20FighterAttack1BattlecruiserInInhabitedSolarSystem [
 
 	| bc fleet1 fg fleet2 region battle |
@@ -99,23 +118,6 @@ SpaceGameTest >> testDeepSpaceHasDeepSpaceName [
 	| d |
 	d := DeepSpace new.
 	self assert: d name equals: 'Deep Space'
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testFighterVsFighterInInhabitedSolarSystem [
-
-	| fg fleet1 fleet2 region battle|
-	fg := Fighter new.
-	region := InhabitedSolarSystem new.
-	fleet1 := Fleet new initializeWith: fg numberOfShips: 3 in: region.
-	fleet2 := Fleet new initializeWith: fg numberOfShips: 5 in: region.
-	battle := Battle new initializeWith: fleet1 versus: fleet2.
-	Transcript show: '--------RESULT----------';cr.
-	Transcript show: fleet1 printString; cr.
-	Transcript show: '-----------------------';cr.
-	Transcript show: fleet2 printString; cr.
-	Transcript show: '-----------------------';cr.
-	
 ]
 
 { #category : 'tests' }
