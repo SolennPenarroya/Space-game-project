@@ -4,10 +4,7 @@ Class {
 	#instVars : [
 		'fleetA',
 		'fleetB',
-		'turn',
-		'battleLogs',
-		'nbShipsFleetA',
-		'nbShipsFleetB'
+		'turn'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
