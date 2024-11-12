@@ -10,6 +10,11 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'as yet unclassified' }
+Board >> getTileAtX: x y: y [
+	^ tiles atColumn: x atRow: y.
+]
+
 { #category : 'initialization' }
 Board >> initializeWidth: w height: h [
 

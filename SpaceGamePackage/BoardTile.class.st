@@ -47,27 +47,7 @@ BoardTile >> x [
 ]
 
 { #category : 'accessing' }
-BoardTile >> x: anInteger [
-
-	x := anInteger
-]
-
-{ #category : 'instance creation' }
-BoardTile >> x: xCoord y: yCoord [
-
-	x := xCoord.
-	y := yCoord.
-	self board atX: x atY: y put: self
-]
-
-{ #category : 'accessing' }
 BoardTile >> y [
 
 	^ y
-]
-
-{ #category : 'accessing' }
-BoardTile >> y: anInteger [
-
-	y := anInteger
 ]
