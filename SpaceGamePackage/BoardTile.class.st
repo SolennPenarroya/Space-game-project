@@ -22,7 +22,6 @@ BoardTile >> board [
 BoardTile >> initialize [
 
 	super initialize.
-	self basicPosition: 1 @ 1
 ]
 
 { #category : 'initialization' }
