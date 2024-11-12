@@ -9,6 +9,15 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'as yet unclassified' }
+Fleet >> OtherShipTakingDamages: anInteger Ship: previousShip [
+
+	self removeShip: previousShip.
+	self isDestroyed
+		ifTrue: [ 'Fleet is out of boats' ]
+		ifFalse: [ ships first takingDamages: anInteger ]
+]
+
 { #category : 'adding' }
 Fleet >> addShip: aShip [
 
@@ -37,16 +46,9 @@ Fleet >> initializeWith: aShip numberOfShips: shipCount in: aRegion [
 { #category : 'testing' }
 Fleet >> isDestroyed [
 
-	^ ships isEmpty
-]
-
-{ #category : 'as yet unclassified' }
-Fleet >> otherShipTakingDamages: anInteger ship: previousShip [
-
-	self removeShip: previousShip.
-	self isDestroyed
-		ifTrue: [ 'Fleet is out of boats' ]
-		ifFalse: [ ships first takingDamages: anInteger ]
+	ships isEmpty
+		ifTrue: [ ^ true ]
+		ifFalse: [ ^ false ]
 ]
 
 { #category : 'printing' }
