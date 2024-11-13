@@ -12,6 +12,12 @@ Class {
 	#package : 'SpaceGamePackage'
 }
 
+{ #category : 'as yet unclassified' }
+BoardTile >> assignFleet: f [
+
+	fleet :=f.
+]
+
 { #category : 'accessing' }
 BoardTile >> board [
 

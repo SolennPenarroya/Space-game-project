@@ -11,6 +11,12 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
+Board >> addTile: aTile atX: xPos y: yPos [
+
+	tiles atColumn: xPos atRow: yPos put: aTile
+]
+
+{ #category : 'as yet unclassified' }
 Board >> getTileAtX: x y: y [
 	^ tiles atColumn: x atRow: y.
 ]
@@ -18,15 +24,10 @@ Board >> getTileAtX: x y: y [
 { #category : 'initialization' }
 Board >> initializeWidth: w height: h [
 
-	| fleetEmpty region ship tile |
+	| region tile |
 	width := w.
 	height := h.
 	region := InhabitedSolarSystem new.
-	ship := Fighter new.
-	fleetEmpty := Fleet new
-		              initializeWith: ship
-		              numberOfShips: 0
-		              in: region.
 	tiles := CTArray2D width: w height: h.
 	1 to: w do: [ :x |
 		1 to: h do: [ :y |
@@ -34,13 +35,7 @@ Board >> initializeWidth: w height: h [
 				        initializeX: x
 				        y: y
 				        region: region
-				        fleet: fleetEmpty
+				        fleet: nil
 				        board: self.
 			tiles atColumn: x atRow: y put: tile ] ]
-]
-
-{ #category : 'as yet unclassified' }
-Board >> placeTile: aTile atX: xPos y: yPos [
-
-	tiles atColumn: xPos atRow: yPos put: aTile
 ]
