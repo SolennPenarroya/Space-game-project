@@ -118,6 +118,37 @@ SpaceGameTest >> testFleetInitializeWith5Fighter [
 ]
 
 { #category : 'tests' }
+SpaceGameTest >> testFleetOf2BattlecruiserTaking13500Damages [
+
+    | bc bc2 fleet region |
+    bc := BattleCruiser new.
+    bc2 := BattleCruiser new.
+    region := InhabitedSolarSystem new.
+    fleet := Fleet new initializeWith: bc in: region.
+    fleet addShip: bc2.
+    bc takingDamages: 13500.
+    self assert: bc shield equals: 0.
+    self assert: bc hull equals: 4500.
+
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testFleetOf2FighterTaking650Damages [
+
+    | fg fg2 fleet region |
+    fg := Fighter new.
+    fg2 := Fighter new.
+    region := InhabitedSolarSystem new.
+    fleet := Fleet new initializeWith: fg in: region.
+    fleet addShip: fg2.
+    fg takingDamages: 650.
+    self assert: fg shield equals: 0.
+    self assert: fg hull equals: 0.
+	self assert: fg2 shield equals: 0.
+    self assert: fg2 hull equals: 350.
+]
+
+{ #category : 'tests' }
 SpaceGameTest >> testNameAsteroidField [
 
 	| a |
@@ -171,36 +202,4 @@ SpaceGameTest >> testTakingDamage [
 	bc2 takingDamages: 10000.
 	self assert: bc2 shield equals: 0.
 	self assert: bc2 hull equals: 0
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testTakingDamagesFleet [
-
-    | bc bc2 fleet region |
-    bc := BattleCruiser new.
-    bc2 := BattleCruiser new.
-    region := InhabitedSolarSystem new.
-    fleet := Fleet new initializeWith: bc in: region.
-    fleet addShip: bc2.
-    bc takingDamages: 100.
-    self assert: bc shield equals: 1100.
-    self assert: bc hull equals: 6000.
-    bc takingDamages: 1500.
-    self assert: bc shield equals: 0.
-    self assert: bc hull equals: 5600.
-    bc takingDamages: 5700.
-    self assert: bc shield equals: 0.
-    self assert: bc hull equals: 0.
-    self assert: bc2 shield equals: 1100.
-    self assert: bc2 hull equals: 6000.
-    
-    bc := BattleCruiser new.
-    bc2 := BattleCruiser new.
-    fleet := Fleet new initializeWith: bc in: region.
-    fleet addShip: bc2.
-    bc takingDamages: 1200+6000+1200+100.
-    self assert: bc shield equals: 0.
-    self assert: bc hull equals: 0.
-    self assert: bc2 shield equals: 0.
-    self assert: bc2 hull equals: 5900
 ]
