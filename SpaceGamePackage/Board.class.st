@@ -35,7 +35,7 @@ Board >> initializeWidth: w height: h [
 				        initializeX: x
 				        y: y
 				        region: region
-				        fleet: nil
+				        fleet: FleetNullObject new
 				        board: self.
 			tiles atColumn: x atRow: y put: tile ] ]
 ]

@@ -17,6 +17,27 @@ Fleet >> addShip: aShip [
 	ships add: aShip
 ]
 
+{ #category : 'as yet unclassified' }
+Fleet >> encounterFleet: aFleet on: anOtherBoardTile from: aBoardTile [
+
+	Battle new initializeWith: self versus: aFleet
+]
+
+{ #category : 'as yet unclassified' }
+Fleet >> encounterWith: anOtherFleet on: anOtherBoardTile from: aBoardTile [
+
+	anOtherFleet encounterFleet: self on: anOtherBoardTile from: aBoardTile
+]
+
+{ #category : 'initialization' }
+Fleet >> initializeWith: aShip [
+
+	super initialize.
+	ships := OrderedCollection new.
+	region := InhabitedSolarSystem new.
+	self addShip: aShip
+]
+
 { #category : 'initialization' }
 Fleet >> initializeWith: aShip in: aRegion [
 
@@ -24,6 +45,15 @@ Fleet >> initializeWith: aShip in: aRegion [
 	ships := OrderedCollection new.
 	region := aRegion.
 	self addShip: aShip
+]
+
+{ #category : 'initialization' }
+Fleet >> initializeWith: aShip numberOfShips: shipCount [
+
+	super initialize.
+	ships := OrderedCollection new.
+	region := InhabitedSolarSystem new.
+	shipCount timesRepeat: [ self addShip: aShip copy ]
 ]
 
 { #category : 'initialization' }
@@ -39,6 +69,17 @@ Fleet >> initializeWith: aShip numberOfShips: shipCount in: aRegion [
 Fleet >> isDestroyed [
 
 	^ ships isEmpty
+]
+
+{ #category : 'as yet unclassified' }
+Fleet >> moveOnX: x Y: y [
+ |targetFleet|
+ tile := tile board getTileAtX: x y: y.
+ targetFleet := tile fleet.
+ self encounterWith: targetFleet on: tile.
+ 
+ 
+	
 ]
 
 { #category : 'as yet unclassified' }
@@ -95,6 +136,13 @@ Fleet >> removeShip: aShip [
 
 	aShip parentFleet: nil.
 	ships remove: aShip
+]
+
+{ #category : 'initialization' }
+Fleet >> setPositionOnX: x Y: y Board: b [
+
+	tile := tile b getTileAtX: x y: y.
+	tile assignFleet: self.
 ]
 
 { #category : 'accessing' }

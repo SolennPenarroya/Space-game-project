@@ -13,16 +13,23 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-BoardTile >> assignFleet: f [
+BoardTile >> assignFleet: f from: anOthertile [
 
 	fleet := f.
 	f parentTile: self.
+	anOthertile removeFleet.
 ]
 
 { #category : 'accessing' }
 BoardTile >> board [
 
 	^ board
+]
+
+{ #category : 'testing' }
+BoardTile >> fleet [
+
+	^ fleet
 ]
 
 { #category : 'initialization' }
@@ -33,18 +40,19 @@ BoardTile >> initializeX: xPos y: yPos region: aRegion fleet: aFleet board: aBoa
 	y := yPos.
 	region := aRegion.
 	fleet := aFleet.
-	board := aBoard.
-]
-
-{ #category : 'testing' }
-BoardTile >> isOccupiedByFleet [
-
-	^ fleet notNil 
+	aFleet region: aRegion.
+	board := aBoard
 ]
 
 { #category : 'accessing' }
 BoardTile >> region [
 ^region 
+]
+
+{ #category : 'removing' }
+BoardTile >> removeFleet [
+
+	fleet = nil.
 ]
 
 { #category : 'accessing' }
