@@ -165,16 +165,16 @@ Ship >> takingDamages: dmgTaken [
 { #category : 'as yet unclassified' }
 Ship >> takingDamagesByDestroyer: dmgTaken [
 
-		| remaining |
-	remaining := shield - dmgTaken.
+	| remaining |
+	remaining := shield - (dmgTaken * 2).
 	remaining > 0
 		ifTrue: [ shield := remaining ]
 		ifFalse: [
 			shield := 0.
-			remaining := hull + remaining.
+			remaining := hull + (remaining / 4).
 			remaining > 0
 				ifTrue: [ hull := remaining ]
 				ifFalse: [
 					hull := 0.
-					parentFleet otherShipTakingDamagesByDestroyer: 0 - remaining Ship: self ] ]
+					parentFleet otherShipTakingDamagesByDestroyer: 0 - (remaining * 2) ship: self ] ]
 ]
