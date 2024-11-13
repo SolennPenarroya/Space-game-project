@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'ships',
-		'region'
+		'region',
+		'tile'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
@@ -49,6 +50,22 @@ Fleet >> otherShipTakingDamages: anInteger ship: previousShip [
 		ifFalse: [ ships first takingDamages: anInteger ]
 ]
 
+{ #category : 'as yet unclassified' }
+Fleet >> otherShipTakingDamagesByDestroyer: anInteger ship: previousShip [
+
+	self removeShip: previousShip.
+	self isDestroyed
+		ifTrue: [ 'Fleet is out of boats' ]
+		ifFalse: [ ships first takingDamagesByDestroyer: anInteger ]
+]
+
+{ #category : 'as yet unclassified' }
+Fleet >> parentTile: t [
+
+	tile := t.
+	region := t region
+]
+
 { #category : 'printing' }
 Fleet >> printOn: aStream [
 
@@ -83,4 +100,15 @@ Fleet >> removeShip: aShip [
 { #category : 'accessing' }
 Fleet >> ships [
  ^ ships
+]
+
+{ #category : 'accessing - structure variables' }
+Fleet >> x [
+^ tile x
+]
+
+{ #category : 'accessing - structure variables' }
+Fleet >> y [
+
+	^ tile y
 ]

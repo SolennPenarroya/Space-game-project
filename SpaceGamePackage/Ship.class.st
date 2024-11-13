@@ -52,26 +52,15 @@ Ship >> attackedByCruiser: aCruiser in: aRegion [
 { #category : 'as yet unclassified' }
 Ship >> attackedByDestroyer: aDestroyer in: aRegion [
 
-	| dmg remaining |
-	dmg := self damage
-	       * (self regionModifier at: 'damageModifier' at: aRegion id)
+	| dmg |
+	dmg := aDestroyer damage
 	       *
-	       (self regionModifier at: 'defenseModifier' at: self region id).
-
-
-	remaining := shield - (dmg * 2).
-	remaining > 0
-		ifTrue: [ shield := remaining ]
-		ifFalse: [
-			shield := 0.
-			remaining := hull + remaining / 4.
-			remaining > 0
-				ifTrue: [ hull := remaining ]
-				ifFalse: [
-					hull := 0.
-					parentFleet
-						otherShipTakingDamages: 0 - (remaining * 4)
-						ship: aDestroyer ] ]
+	       (aDestroyer regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (aDestroyer regionModifier
+		        at: 'defenseModifier'
+		        at: self region id).
+		self takingDamagesByDestroyer: dmg
 ]
 
 { #category : 'as yet unclassified' }
@@ -171,4 +160,21 @@ Ship >> takingDamages: dmgTaken [
 				ifFalse: [
 					hull := 0.
 					parentFleet OtherShipTakingDamages: 0 - remaining Ship: self ] ]
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> takingDamagesByDestroyer: dmgTaken [
+
+		| remaining |
+	remaining := shield - dmgTaken.
+	remaining > 0
+		ifTrue: [ shield := remaining ]
+		ifFalse: [
+			shield := 0.
+			remaining := hull + remaining.
+			remaining > 0
+				ifTrue: [ hull := remaining ]
+				ifFalse: [
+					hull := 0.
+					parentFleet otherShipTakingDamagesByDestroyer: 0 - remaining Ship: self ] ]
 ]

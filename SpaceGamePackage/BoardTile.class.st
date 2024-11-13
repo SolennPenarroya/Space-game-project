@@ -15,7 +15,8 @@ Class {
 { #category : 'as yet unclassified' }
 BoardTile >> assignFleet: f [
 
-	fleet :=f.
+	fleet := f.
+	f parentTile: self.
 ]
 
 { #category : 'accessing' }
