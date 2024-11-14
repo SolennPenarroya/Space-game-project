@@ -6,8 +6,8 @@ Class {
 		'fleetB',
 		'turn',
 		'battleLogs',
-		'nbShipsFleetA',
-		'nbShipsFleetB'
+		'nbShipsFleetBLost',
+		'nbShipsFleetALost'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
@@ -16,12 +16,12 @@ Class {
 { #category : 'adding' }
 Battle >> addLogResult [
 
-	nbShipsFleetA := nbShipsFleetA - fleetA ships size.
-	nbShipsFleetB := nbShipsFleetB - fleetB ships size.
+	nbShipsFleetALost := nbShipsFleetALost - fleetA ships size.
+	nbShipsFleetBLost := nbShipsFleetBLost - fleetB ships size.
 	self logBattle: '--------RESULT----------'.
 	self logBattle: String cr.
-	nbShipsFleetA > 0 ifTrue: [
-		self logBattle:'Fleet A has ' , nbShipsFleetA asString , ' ship(s) lost'.
+	nbShipsFleetALost > 0 ifTrue: [
+		self logBattle:'Fleet A has ' , nbShipsFleetALost asString , ' ship(s) lost'.
 		self logBattle: String cr.].
 	fleetA isDestroyed
 	ifTrue: [ 
@@ -31,8 +31,8 @@ Battle >> addLogResult [
 	self logBattle: String cr.
 	self logBattle: '-----------------------'.
 	self logBattle: String cr.
-	nbShipsFleetB > 0 ifTrue: [
-		self logBattle:'Fleet B has ' , nbShipsFleetB asString , ' ship(s) lost'.
+	nbShipsFleetBLost > 0 ifTrue: [
+		self logBattle:'Fleet B has ' , nbShipsFleetBLost asString , ' ship(s) lost'.
 		self logBattle: String cr.].
 	fleetB isDestroyed
 		ifTrue: [ self logBattle: 'Fleet B has been defeated.' ]
@@ -105,8 +105,8 @@ Battle >> initializeWith: fleetOne versus: fleetTwo [
 	fleetB := fleetTwo.
 	turn := 1.
 	battleLogs := OrderedCollection new.
-	nbShipsFleetA := fleetA ships size.
-	nbShipsFleetB := fleetB ships size.
+	nbShipsFleetALost := fleetA ships size.
+	nbShipsFleetBLost := fleetB ships size.
 	self startBattle
 ]
 

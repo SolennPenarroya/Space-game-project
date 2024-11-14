@@ -9,9 +9,15 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-FleetNullObject >> encounterWith: otherFleet on: aBoardTile [
+FleetNullObject >> encounterFleet: aFleet on: anOtherBoardTile from: aBoardTile [
 
-	aBoardTile assignFleet: otherFleet from: aBoardTile
+	anOtherBoardTile assignFleet: aFleet from: aBoardTile
+]
+
+{ #category : 'as yet unclassified' }
+FleetNullObject >> encounterWith: anOtherFleet on: anOtherBoardTile from: aBoardTile [
+
+	anOtherBoardTile assignFleet: anOtherFleet from: aBoardTile
 ]
 
 { #category : 'accessing' }

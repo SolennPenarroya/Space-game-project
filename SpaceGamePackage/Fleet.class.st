@@ -18,15 +18,15 @@ Fleet >> addShip: aShip [
 ]
 
 { #category : 'as yet unclassified' }
-Fleet >> encounterFleet: aFleet on: anOtherBoardTile from: aBoardTile [
+Fleet >> encounterFleet: aFleet on: anOthertile from: aBoardTile [
 
-	Battle new initializeWith: self versus: aFleet
+	aBoardTile needBattleWith: self
 ]
 
 { #category : 'as yet unclassified' }
-Fleet >> encounterWith: anOtherFleet on: anOtherBoardTile from: aBoardTile [
+Fleet >> encounterWith: anOtherFleet on: anOtherTile from: aBoardTile [
 
-	anOtherFleet encounterFleet: self on: anOtherBoardTile from: aBoardTile
+	anOtherFleet encounterFleet: self on:anOtherTile from: aBoardTile
 ]
 
 { #category : 'initialization' }
@@ -71,15 +71,28 @@ Fleet >> isDestroyed [
 	^ ships isEmpty
 ]
 
+{ #category : 'actions' }
+Fleet >> moveDown [
+
+	tile fleetMoveOnx: self x y: self y + 1
+]
+
 { #category : 'as yet unclassified' }
-Fleet >> moveOnX: x Y: y [
- |targetFleet|
- tile := tile board getTileAtX: x y: y.
- targetFleet := tile fleet.
- self encounterWith: targetFleet on: tile.
- 
- 
-	
+Fleet >> moveLeft [
+
+	tile fleetMoveOnx: self x - 1 y: self y
+]
+
+{ #category : 'as yet unclassified' }
+Fleet >> moveRight [
+
+	tile fleetMoveOnx: self x + 1 y: self y
+]
+
+{ #category : 'as yet unclassified' }
+Fleet >> moveUp [
+
+	tile fleetMoveOnx: self x y: self y - 1
 ]
 
 { #category : 'as yet unclassified' }
@@ -139,15 +152,20 @@ Fleet >> removeShip: aShip [
 ]
 
 { #category : 'initialization' }
-Fleet >> setPositionOnX: x Y: y Board: b [
+Fleet >> setPositionOnx: x y: y board: b [
 
-	tile := tile b getTileAtX: x y: y.
-	tile assignFleet: self.
+	tile := b getTileAtx: x y: y.
+	tile setFleet: self
 ]
 
 { #category : 'accessing' }
 Fleet >> ships [
  ^ ships
+]
+
+{ #category : 'accessing' }
+Fleet >> tile [
+^tile
 ]
 
 { #category : 'accessing - structure variables' }

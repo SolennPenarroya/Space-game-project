@@ -159,7 +159,7 @@ Ship >> takingDamages: dmgTaken [
 				ifTrue: [ hull := remaining ]
 				ifFalse: [
 					hull := 0.
-					parentFleet OtherShipTakingDamages: 0 - remaining Ship: self ] ]
+					parentFleet otherShipTakingDamages: 0 - remaining ship: self ] ]
 ]
 
 { #category : 'as yet unclassified' }

@@ -13,11 +13,11 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-BoardTile >> assignFleet: f from: anOthertile [
+BoardTile >> assignFleet: f from: anOtherTile [
 
 	fleet := f.
 	f parentTile: self.
-	anOthertile removeFleet.
+	anOtherTile removeFleet
 ]
 
 { #category : 'accessing' }
@@ -32,6 +32,11 @@ BoardTile >> fleet [
 	^ fleet
 ]
 
+{ #category : 'as yet unclassified' }
+BoardTile >> fleetMoveOnx: nextx y: nexty [
+	board fleetMoveOnx: nextx y: nexty from: self fleet: fleet.
+]
+
 { #category : 'initialization' }
 BoardTile >> initializeX: xPos y: yPos region: aRegion fleet: aFleet board: aBoard [
 
@@ -44,6 +49,12 @@ BoardTile >> initializeX: xPos y: yPos region: aRegion fleet: aFleet board: aBoa
 	board := aBoard
 ]
 
+{ #category : 'as yet unclassified' }
+BoardTile >> needBattleWith: anOtherfleet [
+
+	board battleAgainst: fleet vs: anOtherfleet
+]
+
 { #category : 'accessing' }
 BoardTile >> region [
 ^region 
@@ -52,7 +63,14 @@ BoardTile >> region [
 { #category : 'removing' }
 BoardTile >> removeFleet [
 
-	fleet = nil.
+	fleet := FleetNullObject new.
+]
+
+{ #category : 'initialization' }
+BoardTile >> setFleet: f [ 
+
+	fleet := f.
+	f parentTile: self.
 ]
 
 { #category : 'accessing' }
