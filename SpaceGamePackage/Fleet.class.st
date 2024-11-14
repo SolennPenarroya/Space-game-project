@@ -124,12 +124,14 @@ Fleet >> parentTile: t [
 Fleet >> printOn: aStream [
 
 	aStream
-		nextPutAll: 'Fleet in region: ' , region printString;
+		nextPutAll:
+			'Fleet in region: ' , region printString , 'Coordinate ('
+			, self x printString , ';' , self y printString , ') ';
 		cr.
 	ships do: [ :aShip |
 		aStream
 			nextPutAll: aShip printString;
-			cr ].
+			cr ]
 ]
 
 { #category : 'accessing' }
