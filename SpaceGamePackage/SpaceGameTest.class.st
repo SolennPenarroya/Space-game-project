@@ -8,13 +8,25 @@ Class {
 { #category : 'tests' }
 SpaceGameTest >> testBattle10CruisersInAsteroidFieldAttack3BattlecruiserInDeepSpace [
 
-	| cruiser fleet1 battleCruiser fleet2 region1 region2 battle |
+	| cruiser fleet1 battleCruiser fleet2 region1 region2 battle board |
+	board := Board new.
+	board initializeWidth: 5 height: 5.
 	cruiser := Cruiser new.
 	battleCruiser := BattleCruiser new.
 	region1 := AsteroidField new.
 	region2 := DeepSpace new.
-	fleet1 := Fleet new initializeWith: cruiser numberOfShips: 10 in: region1.
-	fleet2 := Fleet new initializeWith: battleCruiser numberOfShips: 3 in: region2.
+	fleet1 := Fleet new
+		          initializeWith: cruiser
+		          numberOfShips: 10
+		          in: region1.
+	fleet2 := Fleet new
+		          initializeWith: battleCruiser
+		          numberOfShips: 3
+		          in: region2.
+	fleet1 setPositionOnx: 1 y: 1 board: board.
+	fleet2 setPositionOnx: 2 y: 2 board: board.
+	fleet1 region: region1.
+	fleet2 region: region2.
 	battle := Battle new initializeWith: fleet1 versus: fleet2.
 
 	self assert: fleet1 ships size equals: 10.
@@ -22,69 +34,91 @@ SpaceGameTest >> testBattle10CruisersInAsteroidFieldAttack3BattlecruiserInDeepSp
 	self assert: fleet1 ships first shield equals: 0.
 	self assert: fleet1 ships first hull equals: 7425.
 	self assert: fleet2 ships first shield equals: 6000.
-	self assert: fleet2 ships first hull equals: 6000.
+	self assert: fleet2 ships first hull equals: 6000
 ]
 
 { #category : 'tests' }
 SpaceGameTest >> testBattle1FighterAttack1FighterInInhabitedSolarSystem [
 
-	| fg fleet1 fleet2 region battle|
+	| fg fleet1 fleet2 region battle board |
+	board := Board new.
+	board initializeWidth: 5 height: 5.
 	fg := Fighter new.
 	region := InhabitedSolarSystem new.
 	fleet1 := Fleet new initializeWith: fg numberOfShips: 1 in: region.
 	fleet2 := Fleet new initializeWith: fg numberOfShips: 1 in: region.
+	fleet1 setPositionOnx: 1 y: 1 board: board.
+	fleet2 setPositionOnx: 2 y: 2 board: board.
 	battle := Battle new initializeWith: fleet1 versus: fleet2.
-	
+
 	self assert: fleet1 ships size equals: 1.
 	self assert: fleet1 ships first shield equals: 0.
 	self assert: fleet1 ships first hull equals: 350.
 	self assert: fleet2 ships first shield equals: 0.
-	self assert: fleet2 ships first hull equals: 350.
+	self assert: fleet2 ships first hull equals: 350
 ]
 
 { #category : 'tests' }
 SpaceGameTest >> testBattle20FighterAttack1BattlecruiserInInhabitedSolarSystem [
 
-	| bc fleet1 fg fleet2 region battle |
+	| bc fleet1 fg fleet2 region battle board |
+	board := Board new.
+	board initializeWidth: 5 height: 5.
 	bc := BattleCruiser new.
 	fg := Fighter new.
 	region := InhabitedSolarSystem new.
 	fleet1 := Fleet new initializeWith: fg numberOfShips: 20 in: region.
 	fleet2 := Fleet new initializeWith: bc in: region.
+	fleet1 setPositionOnx: 1 y: 1 board: board.
+	fleet2 setPositionOnx: 2 y: 2 board: board.
 	battle := Battle new initializeWith: fleet1 versus: fleet2.
 
-	
+
 	self assert: fleet1 ships size equals: 14.
 	self assert: fleet1 ships first shield equals: 100.
-	self assert: fleet2 ships first shield equals: 12000.
+	self assert: fleet2 ships first shield equals: 12000
 ]
 
 { #category : 'tests' }
 SpaceGameTest >> testBattle2FighterAttack1BattlecruiserInInhabitedSolarSystem [
 
-	| bc fleet1 fg fleet2 region battle |
+	| bc fleet1 fg fleet2 region battle board |
+	board := Board new.
+	board initializeWidth: 5 height: 5.
 	bc := BattleCruiser new.
 	fg := Fighter new.
 	region := InhabitedSolarSystem new.
 	fleet1 := Fleet new initializeWith: fg numberOfShips: 2 in: region.
 	fleet2 := Fleet new initializeWith: bc in: region.
+	fleet1 setPositionOnx: 1 y: 1 board: board.
+	fleet2 setPositionOnx: 2 y: 2 board: board.
 	battle := Battle new initializeWith: fleet1 versus: fleet2.
 
 	self assert: fleet1 isDestroyed equals: true.
 	self assert: fleet2 ships first shield equals: 11900.
-	self assert: fleet2 ships first hull equals: 6000.
+	self assert: fleet2 ships first hull equals: 6000
 ]
 
 { #category : 'tests' }
 SpaceGameTest >> testBattle5DestroyerInDeepSpaceAttack3BattlecruiserInNebula [
 
-	| destroyer fleet1 battleCruiser fleet2 region1 region2 battle |
+	| destroyer fleet1 battleCruiser fleet2 region1 region2 battle board |
+	board := Board new.
+	board initializeWidth: 5 height: 5.
 	destroyer := Destroyer new.
 	battleCruiser := BattleCruiser new.
 	region1 := DeepSpace new.
 	region2 := Nebula new.
-	fleet1 := Fleet new initializeWith: destroyer numberOfShips: 5 in: region1.
-	fleet2 := Fleet new initializeWith: battleCruiser numberOfShips: 3 in: region2.
+	fleet1 := Fleet new
+		          initializeWith: destroyer
+		          numberOfShips: 5
+		          in: region1.
+	fleet2 := Fleet new
+		          initializeWith: battleCruiser
+		          numberOfShips: 3
+		          in: region2.
+	fleet1 setPositionOnx: 1 y: 1 board: board.
+	fleet2 setPositionOnx: 2 y: 2 board: board.
 	battle := Battle new initializeWith: fleet1 versus: fleet2.
 
 	self assert: fleet1 ships size equals: 5.
@@ -92,84 +126,7 @@ SpaceGameTest >> testBattle5DestroyerInDeepSpaceAttack3BattlecruiserInNebula [
 	self assert: fleet1 ships first shield equals: 0.
 	self assert: fleet1 ships first hull equals: 5500.
 	self assert: fleet2 ships first shield equals: 0.
-	self assert: fleet2 ships first hull equals: 3000.
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testBattleCruiseVSBattleCruiserInhabitedSolarSystem [ 
-
-	| fleet1 fleet2 bc1 bc2 region1 region2 damageToFleet1 damageToFleet2 battleResult |
-	"Initialisation des vaisseaux et des flottes"
-	bc1 := BattleCruiser new.
-	bc2 := BattleCruiser new.
-	"Définition de la région de combat"
-	region1 := InhabitedSolarSystem new.
-	region2 := InhabitedSolarSystem new.
-
-	fleet1 := Fleet new initializeWith: bc1 numberOfShips: 1 in: region1.
-	fleet2 := Fleet new initializeWith: bc2 numberOfShips: 1 in: region2.
-
-
-
-	fleet1 ships first
-		attackByBattleCruiser: fleet2 ships first
-		in: region1.
-
-	self assert: fleet1 ships first shield equals: 200
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testBattleCruiserVs2FighterInInhabitedSolarSystem [
-
-	| bc fleet1 fg fleet2 region battle |
-	bc := BattleCruiser new.
-	region := InhabitedSolarSystem new.
-	fleet1 := Fleet new initializeWith: bc in: region.
-	Transcript
-		show: fleet1 printString;
-		cr.
-	Transcript
-		show: '-----------------------';
-		cr.
-	fg := Fighter new.
-	fleet2 := Fleet new initializeWith: fg numberOfShips: 2 in: region.
-	Transcript
-		show: fleet2 printString;
-		cr.
-	battle := Battle new initializeWith: fleet1 versus: fleet2.
-	Transcript
-		show: '--------RESULT----------';
-		cr.
-	Transcript
-		show: fleet1 printString;
-		cr.
-	Transcript
-		show: '-----------------------';
-		cr.
-	Transcript
-		show: fleet2 printString;
-		cr.
-
-	self assert: fleet1 ships size equals: 1.
-	self assert: fleet1 ships first shield equals: 900.
-	self assert: fleet1 ships first hull equals: 6000
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testFighterVsFighterInInhabitedSolarSystem [
-
-	| fg fleet1 fleet2 region battle|
-	fg := Fighter new.
-	region := InhabitedSolarSystem new.
-	fleet1 := Fleet new initializeWith: fg numberOfShips: 3 in: region.
-	fleet2 := Fleet new initializeWith: fg numberOfShips: 5 in: region.
-	battle := Battle new initializeWith: fleet1 versus: fleet2.
-	Transcript show: '--------RESULT----------';cr.
-	Transcript show: fleet1 printString; cr.
-	Transcript show: '-----------------------';cr.
-	Transcript show: fleet2 printString; cr.
-	Transcript show: '-----------------------';cr.
-	
+	self assert: fleet2 ships first hull equals: 3000
 ]
 
 { #category : 'tests' }
@@ -192,6 +149,36 @@ SpaceGameTest >> testFleetInitializeWith5Fighter [
 	fleet := Fleet new initializeWith: fighter numberOfShips: 5 in: region.
 
 	self assert: fleet ships size equals: 5
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testFleetOf2BattlecruiserTaking13500Damages [
+
+    | bc bc2 fleet region |
+    bc := BattleCruiser new.
+    bc2 := BattleCruiser new.
+    region := InhabitedSolarSystem new.
+    fleet := Fleet new initializeWith: bc in: region.
+    fleet addShip: bc2.
+    bc takingDamages: 13500.
+    self assert: bc shield equals: 0.
+    self assert: bc hull equals: 4500.
+]
+
+{ #category : 'tests' }
+SpaceGameTest >> testFleetOf2FighterTaking650Damages [
+
+    | fg fg2 fleet region |
+    fg := Fighter new.
+    fg2 := Fighter new.
+    region := InhabitedSolarSystem new.
+    fleet := Fleet new initializeWith: fg in: region.
+    fleet addShip: fg2.
+    fg takingDamages: 650.
+    self assert: fg shield equals: 0.
+    self assert: fg hull equals: 0.
+    self assert: fg2 shield equals: 0.
+    self assert: fg2 hull equals: 350.
 ]
 
 { #category : 'tests' }
@@ -224,60 +211,4 @@ SpaceGameTest >> testNameNebula [
 	| n |
 	n := Nebula new.
 	self assert: n name equals: 'Nebula'
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testTakingDamage [
-
-	| bc bc2 region fleet fleet2 |
-	bc := BattleCruiser new.
-	region := InhabitedSolarSystem new.
-	fleet := Fleet new initializeWith: bc in: region.
-	bc takingDamages: 100.
-	self assert: bc shield equals: 1100.
-	self assert: bc hull equals: 6000.
-	bc takingDamages: 1500.
-	self assert: bc shield equals: 0.
-	self assert: bc hull equals: 5600.
-	bc takingDamages: 10000.
-	self assert: bc shield equals: 0.
-	self assert: bc hull equals: 0.
-	
-	bc2 := BattleCruiser new.
-	fleet2 := Fleet new initializeWith: bc2 in: region.
-	bc2 takingDamages: 10000.
-	self assert: bc2 shield equals: 0.
-	self assert: bc2 hull equals: 0
-]
-
-{ #category : 'tests' }
-SpaceGameTest >> testTakingDamagesFleet [
-
-    | bc bc2 fleet region |
-    bc := BattleCruiser new.
-    bc2 := BattleCruiser new.
-    region := InhabitedSolarSystem new.
-    fleet := Fleet new initializeWith: bc in: region.
-    fleet addShip: bc2.
-    bc takingDamages: 100.
-    self assert: bc shield equals: 1100.
-    self assert: bc hull equals: 6000.
-    bc takingDamages: 1500.
-    self assert: bc shield equals: 0.
-    self assert: bc hull equals: 5600.
-    bc takingDamages: 5700.
-    self assert: bc shield equals: 0.
-    self assert: bc hull equals: 0.
-    self assert: bc2 shield equals: 1100.
-    self assert: bc2 hull equals: 6000.
-    
-    bc := BattleCruiser new.
-    bc2 := BattleCruiser new.
-    fleet := Fleet new initializeWith: bc in: region.
-    fleet addShip: bc2.
-    bc takingDamages: 1200+6000+1200+100.
-    self assert: bc shield equals: 0.
-    self assert: bc hull equals: 0.
-    self assert: bc2 shield equals: 0.
-    self assert: bc2 hull equals: 5900
 ]

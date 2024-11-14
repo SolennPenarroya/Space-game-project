@@ -10,5 +10,5 @@ AsteroidField >> initialize [
 
 	super initialize.
 	name := 'Asteroid Field'.
-	id := 'Asteroid Field'
+	id := 'AsteroidField'
 ]
