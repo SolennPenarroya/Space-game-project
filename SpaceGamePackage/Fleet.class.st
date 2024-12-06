@@ -100,7 +100,7 @@ Fleet >> otherShipTakingDamages: anInteger ship: previousShip [
 
 	self removeShip: previousShip.
 	self isDestroyed
-		ifTrue: [ 'Fleet is out of boats' ]
+		ifTrue: [ tile setNullFleet ]
 		ifFalse: [ ships first takingDamages: anInteger ]
 ]
 
