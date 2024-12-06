@@ -6,8 +6,7 @@ Class {
 		'parentFleet',
 		'shield',
 		'hull',
-		'damage',
-		'regionModifier'
+		'damage'
 	],
 	#category : 'SpaceGamePackage',
 	#package : 'SpaceGamePackage'
@@ -17,15 +16,8 @@ Class {
 Ship >> attackBattleCruiser: aBattleCuiser in: aRegion [
 
 	| dmg |
-	dmg := self damage
-	       *
-	       (self regionModifier
-		        at: 'damageModifier'
-		        at: aRegion id)
-	       *
-	       (self regionModifier
-		        at: 'defenseModifier'
-		        at: aBattleCuiser region id).
+	dmg := self damage * self getDamageModifier
+	       * aBattleCuiser getDefenceModifier.
 	aBattleCuiser takingDamages: dmg
 ]
 
@@ -34,12 +26,8 @@ Ship >> attackCruiser: aCruiser in: aRegion [
 
 	| dmg |
 	dmg := self damage
-	       *
-	       (self regionModifier at: 'damageModifier' at: aRegion id)
-	       *
-	       (self regionModifier
-		        at: 'defenseModifier'
-		        at: aCruiser region id).
+	       * self getDamageModifier
+	       * aCruiser getDefenceModifier.
 	aCruiser takingDamages: dmg
 ]
 
@@ -48,12 +36,8 @@ Ship >> attackDestroyer: aDestroyer in: aRegion [
 
 	| dmg |
 	dmg := self damage
-	       *
-	       (self regionModifier at: 'damageModifier' at: aRegion id)
-	       *
-	       (self regionModifier
-		        at: 'defenseModifier'
-		        at: aDestroyer region id).
+	       * self getDamageModifier
+	       * aDestroyer getDefenceModifier.
 	aDestroyer takingDamagesByDestroyer: dmg
 ]
 
@@ -62,12 +46,8 @@ Ship >> attackFighter: aFighter in: aRegion [
 
 	| dmg |
 	dmg := self damage
-	       *
-	       (self regionModifier at: 'damageModifier' at: aRegion id)
-	       *
-	       (self regionModifier
-		        at: 'defenseModifier'
-		        at: aFighter region id).
+	       * (self getDamageModifier)
+	       * (aFighter getDefenceModifier).
 	aFighter takingDamages: dmg
 ]
 
@@ -82,6 +62,36 @@ Ship >> damage [
 ^damage 
 ]
 
+{ #category : 'as yet unclassified' }
+Ship >> getDamageModifier [
+
+	^ self region damageModifier
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> getDefenceModifier [
+
+	^ self region defenceModifier
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> getHullModifier [
+
+	^ self region hullModifier
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> getPrecisionModifier [
+
+	^ self region precisionModifier
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> getShieldModifier [
+
+	^ self region shieldModifier
+]
+
 { #category : 'accessing' }
 Ship >> hull [
 ^hull
@@ -89,22 +99,8 @@ Ship >> hull [
 
 { #category : 'initialization' }
 Ship >> initialize [
+
 	super initialize.
-	regionModifier := self initializeRegionModifier
-]
-
-{ #category : 'initialization' }
-Ship >> initializeRegionModifier [
-
-	regionModifier := Dictionary new.
-
-	regionModifier at: 'shieldModifier' put: Dictionary new.
-	regionModifier at: 'hullModifier' put: Dictionary new.
-	regionModifier at: 'precisionModifier' put: Dictionary new.
-	regionModifier at: 'damageModifier' put: Dictionary new.
-	regionModifier at: 'defenseModifier' put: Dictionary new.
-
-	^ regionModifier
 ]
 
 { #category : 'accessing' }
@@ -133,11 +129,6 @@ Ship >> printOn: aStream [
 { #category : 'accessing' }
 Ship >> region [
 	^ parentFleet region
-]
-
-{ #category : 'accessing' }
-Ship >> regionModifier [
-^regionModifier 
 ]
 
 { #category : 'accessing' }

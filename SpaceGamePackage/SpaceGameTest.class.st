@@ -31,8 +31,8 @@ SpaceGameTest >> testBattle10CruisersInAsteroidFieldAttack3BattlecruiserInDeepSp
 
 	self assert: fleet1 ships size equals: 10.
 	self assert: fleet2 ships size equals: 3.
-	self assert: fleet1 ships first shield equals: 1000.
-	self assert: fleet1 ships first hull equals: 8000.
+	self assert: fleet1 ships first shield equals: 0.
+	self assert: fleet1 ships first hull equals: 900.
 	self assert: fleet2 ships first shield equals: 6000.
 	self assert: fleet2 ships first hull equals: 6000
 ]

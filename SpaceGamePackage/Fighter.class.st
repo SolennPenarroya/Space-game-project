@@ -12,10 +12,8 @@ Fighter >> attackBattleCruiser: aBattleCruiser in: aRegion [
 	| dmg |
 	dmg := 0.
 	aBattleCruiser shield > 0 ifFalse: [
-		dmg := self damage
-		       * (self regionModifier at: 'damageModifier' at: aRegion id)
-		       *
-		       (self regionModifier at: 'defenseModifier' at: self region id) ].
+		dmg := self damage * self getDamageModifier
+	       * aBattleCruiser getDefenceModifier. ].
 	aBattleCruiser takingDamages: dmg
 ]
 
@@ -26,10 +24,8 @@ Fighter >> attackDestroyer: aDestroyer in: aRegion [
 	| dmg |
 	dmg := 0.
 	aDestroyer shield > 0 ifFalse: [
-		dmg := self damage
-		       * (self regionModifier at: 'damageModifier' at: aRegion id)
-		       *
-		       (self regionModifier at: 'defenseModifier' at: self region id) ].
+		dmg := self damage * self getDamageModifier
+	       * aDestroyer getDefenceModifier. ].
 	aDestroyer takingDamages: dmg
 ]
 
@@ -37,6 +33,36 @@ Fighter >> attackDestroyer: aDestroyer in: aRegion [
 Fighter >> attackedBy: anAttackingFleet in: aRegion [
 
 	^ anAttackingFleet attackFighter: self in: aRegion
+]
+
+{ #category : 'as yet unclassified' }
+Fighter >> getDamageModifier [
+
+	^ self region damageModifierFighter
+]
+
+{ #category : 'as yet unclassified' }
+Fighter >> getDefenceModifier [
+
+	^ self region defenceModifierFighter
+]
+
+{ #category : 'as yet unclassified' }
+Fighter >> getHullModifier [
+
+	^ self region hullModifierFighter
+]
+
+{ #category : 'as yet unclassified' }
+Fighter >> getPrecisionModifier [
+
+	^ self region precisionModifierFighter
+]
+
+{ #category : 'as yet unclassified' }
+Fighter >> getShieldModifier [
+
+	^ self region shieldModifierFighter
 ]
 
 { #category : 'initialization' }
@@ -47,47 +73,4 @@ Fighter >> initialize [
 	shield := 100.
 	hull := 400.
 	damage := 50.
-	regionModifier := self initializeRegionModifier
-]
-
-{ #category : 'as yet unclassified' }
-Fighter >> initializeRegionModifier [
-
-	| shieldModifier hullModifier damageModifier precisionModifier defenseModifier |
-	super initializeRegionModifier.
-	shieldModifier := regionModifier at: 'shieldModifier'.
-	shieldModifier at: 'DeepSpace' put: 0.
-	shieldModifier at: 'Nebula' put: 1.
-	shieldModifier at: 'AsteroidField' put: 1.
-	shieldModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'shieldModifier' put: shieldModifier.
-
-	hullModifier := regionModifier at: 'hullModifier'.
-	hullModifier at: 'DeepSpace' put: 1.
-	hullModifier at: 'Nebula' put: 1.
-	hullModifier at: 'AsteroidField' put: 1.
-	hullModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'hullModifier' put: hullModifier.
-
-	precisionModifier := regionModifier at: 'precisionModifier'.
-	precisionModifier at: 'DeepSpace' put: 1.
-	precisionModifier at: 'Nebula' put: 1.
-	precisionModifier at: 'AsteroidField' put: 1.
-	precisionModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'precisionModifier' put: precisionModifier.
-
-	damageModifier := regionModifier at: 'damageModifier'.
-	damageModifier at: 'DeepSpace' put: 1.
-	damageModifier at: 'Nebula' put: 2.
-	damageModifier at: 'AsteroidField' put: 1.
-	damageModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'damageModifier' put: damageModifier.
-
-	defenseModifier := regionModifier at: 'defenseModifier'.
-	defenseModifier at: 'DeepSpace' put: 1.
-	defenseModifier at: 'Nebula' put: 1.
-	defenseModifier at: 'AsteroidField' put: 1.
-	defenseModifier at: 'InhabitedSolarSystem' put: 1.
-	regionModifier at: 'defenseModifier' put: defenseModifier.
-	^ regionModifier
 ]
