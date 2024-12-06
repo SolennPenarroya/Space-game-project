@@ -11,14 +11,43 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Board >> addTile: aTile atX: xPos y: yPos [
+Board >> addTile: aTile atx: xPos y: yPos [
 
 	tiles atColumn: xPos atRow: yPos put: aTile
 ]
 
 { #category : 'as yet unclassified' }
-Board >> getTileAtX: x y: y [
-	^ tiles atColumn: x atRow: y.
+Board >> battleAgainst: fleet vs: anOtherFleet [
+	|b|
+	b := Battle new initializeWith: fleet versus: anOtherFleet.
+	Transcript show: b battleLogs printString; cr.
+	anOtherFleet isDestroyed ifTrue: [
+		self
+			fleetMoveOnx: anOtherFleet x
+			y: anOtherFleet y
+			from: fleet tile
+			fleet: fleet ]
+	
+]
+
+{ #category : 'as yet unclassified' }
+Board >> fleetMoveOnx: nextx y: nexty from: aTile fleet: aFleet [
+
+	| targetFleet nextTile |
+	nextTile := self getTileAtx: nextx y: nexty.
+	targetFleet := nextTile fleet.
+	aFleet encounterWith: targetFleet on: nextTile from: aTile 
+]
+
+{ #category : 'as yet unclassified' }
+Board >> getTileAtx: x y: y [
+
+	| coordx coordy |
+	coordx := x max: 1.
+	coordx := coordx min: width.
+	coordy := y max: 1.
+	coordy := coordy min: height.
+	^ tiles atColumn: coordx atRow: coordy
 ]
 
 { #category : 'initialization' }
@@ -35,7 +64,7 @@ Board >> initializeWidth: w height: h [
 				        initializeX: x
 				        y: y
 				        region: region
-				        fleet: nil
+				        fleet: FleetNullObject new
 				        board: self.
 			tiles atColumn: x atRow: y put: tile ] ]
 ]
