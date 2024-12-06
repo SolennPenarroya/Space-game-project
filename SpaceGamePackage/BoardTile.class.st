@@ -73,6 +73,15 @@ BoardTile >> setFleet: f [
 	f parentTile: self.
 ]
 
+{ #category : 'initialization' }
+BoardTile >> setNullFleet [
+
+	| f |
+	f := FleetNullObject new.
+	fleet := f.
+	f parentTile: self
+]
+
 { #category : 'accessing' }
 BoardTile >> x [
 
