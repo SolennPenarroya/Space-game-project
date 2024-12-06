@@ -31,8 +31,8 @@ SpaceGameTest >> testBattle10CruisersInAsteroidFieldAttack3BattlecruiserInDeepSp
 
 	self assert: fleet1 ships size equals: 10.
 	self assert: fleet2 ships size equals: 3.
-	self assert: fleet1 ships first shield equals: 0.
-	self assert: fleet1 ships first hull equals: 7425.
+	self assert: fleet1 ships first shield equals: 1000.
+	self assert: fleet1 ships first hull equals: 8000.
 	self assert: fleet2 ships first shield equals: 6000.
 	self assert: fleet2 ships first hull equals: 6000
 ]
@@ -95,7 +95,7 @@ SpaceGameTest >> testBattle2FighterAttack1BattlecruiserInInhabitedSolarSystem [
 	battle := Battle new initializeWith: fleet1 versus: fleet2.
 
 	self assert: fleet1 isDestroyed equals: true.
-	self assert: fleet2 ships first shield equals: 11900.
+	self assert: fleet2 ships first shield equals: 12000.
 	self assert: fleet2 ships first hull equals: 6000
 ]
 
@@ -124,7 +124,7 @@ SpaceGameTest >> testBattle5DestroyerInDeepSpaceAttack3BattlecruiserInNebula [
 	self assert: fleet1 ships size equals: 5.
 	self assert: fleet2 ships size equals: 2.
 	self assert: fleet1 ships first shield equals: 0.
-	self assert: fleet1 ships first hull equals: 5500.
+	self assert: fleet1 ships first hull equals: 7750.
 	self assert: fleet2 ships first shield equals: 0.
 	self assert: fleet2 ships first hull equals: 3000
 ]

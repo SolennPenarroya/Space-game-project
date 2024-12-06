@@ -8,7 +8,7 @@ Class {
 { #category : 'as yet unclassified' }
 Cruiser >> attackedBy: anAttackingFleet in: aRegion [
 
-	^ anAttackingFleet attackedByCruiser: self in: aRegion
+	^ anAttackingFleet attackCruiser: self in: aRegion
 ]
 
 { #category : 'initialization' }

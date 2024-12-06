@@ -8,24 +8,7 @@ Class {
 { #category : 'as yet unclassified' }
 BattleCruiser >> attackedBy: anAttackingFleet in: aRegion [
 
-	^ anAttackingFleet attackedByBattleCruiser: self in: aRegion
-]
-
-{ #category : 'as yet unclassified' }
-BattleCruiser >> attackedByFighter: aShip in: aRegion [
-	"Si possède du shield = 0 sinon dmg"
-
-	| dmg |
-	dmg := 0.
-	aShip shield > 0
-		ifFalse: [
-			dmg := self damage
-			       * (self regionModifier at: 'damageModifier' at: aRegion id)
-			       *
-			       (self regionModifier
-				        at: 'defenseModifier'
-				        at: self region id) ].
-	aShip takingDamages: dmg
+	^ anAttackingFleet attackBattleCruiser:self in: aRegion
 ]
 
 { #category : 'initialization' }

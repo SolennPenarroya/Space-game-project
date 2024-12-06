@@ -14,67 +14,67 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Ship >> attackedBy: anEnnemiFleet in: aRegion [
-
-	self subclassResponsibility
-]
-
-{ #category : 'as yet unclassified' }
-Ship >> attackedByBattleCruiser: aBattleCuiser in: aRegion [
+Ship >> attackBattleCruiser: aBattleCuiser in: aRegion [
 
 	| dmg |
-	dmg := aBattleCuiser damage
+	dmg := self damage
 	       *
-	       (aBattleCuiser regionModifier
+	       (self regionModifier
 		        at: 'damageModifier'
 		        at: aRegion id)
 	       *
-	       (aBattleCuiser regionModifier
+	       (self regionModifier
 		        at: 'defenseModifier'
-		        at: self region id).
-	self takingDamages: dmg
+		        at: aBattleCuiser region id).
+	aBattleCuiser takingDamages: dmg
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackedByCruiser: aCruiser in: aRegion [
+Ship >> attackCruiser: aCruiser in: aRegion [
 
 	| dmg |
-	dmg := aCruiser damage
+	dmg := self damage
 	       *
-	       (aCruiser regionModifier at: 'damageModifier' at: aRegion id)
+	       (self regionModifier at: 'damageModifier' at: aRegion id)
 	       *
-	       (aCruiser regionModifier
+	       (self regionModifier
 		        at: 'defenseModifier'
-		        at: self region id).
-	self takingDamages: dmg
+		        at: aCruiser region id).
+	aCruiser takingDamages: dmg
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackedByDestroyer: aDestroyer in: aRegion [
+Ship >> attackDestroyer: aDestroyer in: aRegion [
 
 	| dmg |
-	dmg := aDestroyer damage
+	dmg := self damage
 	       *
-	       (aDestroyer regionModifier at: 'damageModifier' at: aRegion id)
+	       (self regionModifier at: 'damageModifier' at: aRegion id)
 	       *
-	       (aDestroyer regionModifier
+	       (self regionModifier
 		        at: 'defenseModifier'
-		        at: self region id).
-		self takingDamagesByDestroyer: dmg
+		        at: aDestroyer region id).
+	aDestroyer takingDamagesByDestroyer: dmg
 ]
 
 { #category : 'as yet unclassified' }
-Ship >> attackedByFighter: aFighter in: aRegion [
+Ship >> attackFighter: aFighter in: aRegion [
 
 	| dmg |
-	dmg := aFighter damage
+	dmg := self damage
 	       *
-	       (aFighter regionModifier at: 'damageModifier' at: aRegion id)
+	       (self regionModifier at: 'damageModifier' at: aRegion id)
 	       *
-	       (aFighter regionModifier
+	       (self regionModifier
 		        at: 'defenseModifier'
-		        at: self region id).
-	self takingDamages: dmg
+		        at: aFighter region id).
+	aFighter takingDamages: dmg
+]
+
+{ #category : 'as yet unclassified' }
+Ship >> attackedBy: anEnnemiFleet in: aRegion [
+
+	self subclassResponsibility
 ]
 
 { #category : 'accessing' }

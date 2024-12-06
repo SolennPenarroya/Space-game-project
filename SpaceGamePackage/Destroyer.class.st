@@ -6,9 +6,61 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
+Destroyer >> attackBattleCruiser: aBattleCuiser in: aRegion [
+
+	| dmg |
+	dmg := self damage
+	       * (self regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (self regionModifier
+		        at: 'defenseModifier'
+		        at: aBattleCuiser region id).
+	aBattleCuiser takingDamagesByDestroyer: dmg
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> attackCruiser: aCruiser in: aRegion [
+
+	| dmg |
+	dmg := self damage
+	       * (self regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (self regionModifier
+		        at: 'defenseModifier'
+		        at: aCruiser region id).
+	aCruiser takingDamagesByDestroyer: dmg
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> attackDestroyer: aDestroyer in: aRegion [
+
+	| dmg |
+	dmg := self damage
+	       * (self regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (self regionModifier
+		        at: 'defenseModifier'
+		        at: aDestroyer region id).
+	aDestroyer takingDamagesByDestroyer: dmg
+]
+
+{ #category : 'as yet unclassified' }
+Destroyer >> attackFighter: aFighter in: aRegion [
+
+	| dmg |
+	dmg := self damage
+	       * (self regionModifier at: 'damageModifier' at: aRegion id)
+	       *
+	       (self regionModifier
+		        at: 'defenseModifier'
+		        at: aFighter region id).
+	aFighter takingDamagesByDestroyer: dmg
+]
+
+{ #category : 'as yet unclassified' }
 Destroyer >> attackedBy: anAttackingFleet in: aRegion [
 
-	^ anAttackingFleet attackedByDestroyer: self in: aRegion
+	^ anAttackingFleet attackDestroyer: self in: aRegion
 ]
 
 { #category : 'initialization' }

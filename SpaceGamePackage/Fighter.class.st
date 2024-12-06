@@ -6,9 +6,37 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
+Fighter >> attackBattleCruiser: aBattleCruiser in: aRegion [
+	"Si possède du shield = 0 sinon dmg"
+
+	| dmg |
+	dmg := 0.
+	aBattleCruiser shield > 0 ifFalse: [
+		dmg := self damage
+		       * (self regionModifier at: 'damageModifier' at: aRegion id)
+		       *
+		       (self regionModifier at: 'defenseModifier' at: self region id) ].
+	aBattleCruiser takingDamages: dmg
+]
+
+{ #category : 'as yet unclassified' }
+Fighter >> attackDestroyer: aDestroyer in: aRegion [
+	"Si possède du shield = 0 sinon dmg"
+
+	| dmg |
+	dmg := 0.
+	aDestroyer shield > 0 ifFalse: [
+		dmg := self damage
+		       * (self regionModifier at: 'damageModifier' at: aRegion id)
+		       *
+		       (self regionModifier at: 'defenseModifier' at: self region id) ].
+	aDestroyer takingDamages: dmg
+]
+
+{ #category : 'as yet unclassified' }
 Fighter >> attackedBy: anAttackingFleet in: aRegion [
 
-	^ anAttackingFleet attackedByFighter: self in: aRegion
+	^ anAttackingFleet attackFighter: self in: aRegion
 ]
 
 { #category : 'initialization' }
